@@ -23,19 +23,23 @@ public class Movement : MonoBehaviour
 
     #region Getters/Setters
 
-    public bool getIsGrounded(){
+    public bool getIsGrounded()
+    {
         return isGrounded;
     }
 
-    public bool getIsDodgeing(){
+    public bool getIsDodgeing()
+    {
         return isDodging;
     }
 
-    public bool getIsSprinting(){
+    public bool getIsSprinting()
+    {
         return isSprinting;
     }
 
-    public void setMoveDir(Vector2 newValue){
+    public void setMoveDir(Vector2 newValue)
+    {
         moveDir = newValue;
     }
 
@@ -52,21 +56,21 @@ public class Movement : MonoBehaviour
     {
         if (!isJumping && !isDodging)
         {
-            transform.position += 
-                (cameraHolder.forward * moveDir.y + cameraHolder.right * moveDir.x) * 
+            transform.position +=
+                (cameraHolder.forward * moveDir.y + cameraHolder.right * moveDir.x) *
                 Time.fixedDeltaTime * movementSpeed;
         }
         else if (isJumping)
         {
-            transform.position += 
+            transform.position +=
                 ((cameraHolder.forward * lastMove.y + cameraHolder.right * lastMove.x) +
-                (cameraHolder.forward * moveDir.y + cameraHolder.right * moveDir.x) * jumpControll) * 
+                (cameraHolder.forward * moveDir.y + cameraHolder.right * moveDir.x) * jumpControll) *
                 Time.fixedDeltaTime * movementSpeed * jumpSpeed;
         }
         else if (isDodging)
         {
-            transform.position += 
-                (cameraHolder.forward * lastMove.y + cameraHolder.right * lastMove.x) * 
+            transform.position +=
+                (cameraHolder.forward * lastMove.y + cameraHolder.right * lastMove.x) *
                 Time.fixedDeltaTime * movementSpeed * dodgeSpeed;
         }
     }

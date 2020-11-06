@@ -7,7 +7,8 @@ public class CameraInput : MonoBehaviour
     private InputActionAsset inputActions;
     private Zoom cameraZoomScript;
 
-    private void Awake() {
+    private void Awake()
+    {
         inputActions = GetComponent<UnityEngine.InputSystem.PlayerInput>().actions;
         cameraZoomScript = gameObject.GetComponent<Zoom>();
     }

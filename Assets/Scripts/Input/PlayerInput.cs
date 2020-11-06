@@ -15,8 +15,8 @@ public class PlayerInput : MonoBehaviour
     }
 
     public void InteractInput(InputAction.CallbackContext context)
-    {  
-        if(context.performed)
+    {
+        if (context.performed)
         {
             playerInteractScript.TryInteract();
         }

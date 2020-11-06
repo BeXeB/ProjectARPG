@@ -8,7 +8,8 @@ public class Look : MonoBehaviour
     private Transform playerModel;
     private Vector2 _mousePos;
 
-    public void setMousePos(Vector2 newValue){
+    public void setMousePos(Vector2 newValue)
+    {
         _mousePos = newValue;
     }
 
@@ -25,7 +26,7 @@ public class Look : MonoBehaviour
         Ray ray = playerCamera.ScreenPointToRay(_mousePos);
         if (Physics.Raycast(ray, out hit, 100f, mask))
         {
-            playerModel.LookAt(new Vector3(hit.point.x,transform.position.y,hit.point.z));
+            playerModel.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
         }
     }
 }

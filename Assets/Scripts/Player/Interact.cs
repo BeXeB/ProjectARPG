@@ -8,7 +8,8 @@ public class Interact : MonoBehaviour
     private Camera playerCamera;
     private Vector2 _mousePos;
 
-    public void setMousePos(Vector2 newValue){
+    public void setMousePos(Vector2 newValue)
+    {
         _mousePos = newValue;
     }
 

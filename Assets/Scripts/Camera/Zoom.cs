@@ -8,7 +8,8 @@ public class Zoom : MonoBehaviour
     private Transform playerTransform;
     private Vector2 scroll;
 
-    public void setScroll(Vector2 newValue){
+    public void setScroll(Vector2 newValue)
+    {
         scroll = newValue;
     }
 
