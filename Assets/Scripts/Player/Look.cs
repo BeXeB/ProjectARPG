@@ -3,27 +3,27 @@ using UnityEngine.InputSystem;
 
 public class Look : MonoBehaviour
 {
-    private Camera mainCamera;
+    [SerializeField] LayerMask mask;
+    private Camera playerCamera;
     private Transform playerModel;
     private Vector2 _mousePos;
 
-    private void Awake()
-    {
-        mainCamera = Camera.main;
-        playerModel = GameObject.Find("Player/PlayerModel").transform;
+    public void setMousePos(Vector2 newValue){
+        _mousePos = newValue;
     }
 
-    public void MouseInput(InputAction.CallbackContext context)
+    private void Awake()
     {
-        _mousePos = context.ReadValue<Vector2>();
+        playerCamera = GameObject.Find("Player/CameraHolder/MainCamera").GetComponent<Camera>();
+        playerModel = GameObject.Find("Player/PlayerModel").transform;
     }
 
     private void FixedUpdate()
     {
         Debug.DrawRay(playerModel.position, playerModel.forward, Color.green, 5f);
         RaycastHit hit;
-        Ray ray = mainCamera.ScreenPointToRay(_mousePos);
-        if (Physics.Raycast(ray, out hit, 100f, ~10))
+        Ray ray = playerCamera.ScreenPointToRay(_mousePos);
+        if (Physics.Raycast(ray, out hit, 100f, mask))
         {
             playerModel.LookAt(new Vector3(hit.point.x,transform.position.y,hit.point.z));
         }

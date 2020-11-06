@@ -1,27 +1,19 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Zoom : MonoBehaviour
 {
     [SerializeField] private float zoomSpeed = 50f;
-    private InputActionAsset inputActions;
     private Vector3 offset = new Vector3(0f, 10f, -10f);
     private Transform cameraTransform;
     private Transform playerTransform;
     private Vector2 scroll;
 
-    public void ScrollInput(InputAction.CallbackContext context)
-    {
-        Vector2 input = context.ReadValue<Vector2>();
-        if (input.y != 0)
-        {
-            scroll = input;
-        }
+    public void setScroll(Vector2 newValue){
+        scroll = newValue;
     }
 
     private void Awake()
     {
-        inputActions = GetComponent<UnityEngine.InputSystem.PlayerInput>().actions;
         cameraTransform = GameObject.Find("Player/CameraHolder/MainCamera").transform;
         playerTransform = GameObject.Find("Player/PlayerModel").transform;
     }
@@ -54,15 +46,5 @@ public class Zoom : MonoBehaviour
             }
         }
         scroll = Vector2.zero;
-    }
-
-    void OnEnable()
-    {
-        inputActions.Enable();
-    }
-
-    void OnDisable()
-    {
-        inputActions.Disable();
     }
 }

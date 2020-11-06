@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
@@ -21,6 +20,26 @@ public class Movement : MonoBehaviour
     private bool isDodging;
     private bool isSprinting;
     private float groundDistance = 0.1f;
+
+    #region Getters/Setters
+
+    public bool getIsGrounded(){
+        return isGrounded;
+    }
+
+    public bool getIsDodgeing(){
+        return isDodging;
+    }
+
+    public bool getIsSprinting(){
+        return isSprinting;
+    }
+
+    public void setMoveDir(Vector2 newValue){
+        moveDir = newValue;
+    }
+
+    #endregion
 
     private void Awake()
     {
@@ -65,40 +84,7 @@ public class Movement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, mask);
     }
 
-    #region Input
-
-    public void MoveInput(InputAction.CallbackContext context)
-    {
-        moveDir = context.ReadValue<Vector2>();
-    }
-
-    public void JumpInput(InputAction.CallbackContext context)
-    {
-        if (isGrounded && !isDodging && context.performed)
-        {
-            Jump();
-        }
-    }
-
-    public void SprintInput(InputAction.CallbackContext context)
-    {
-        if ((isGrounded || !isGrounded && isSprinting) && !isDodging && (context.performed || context.canceled))
-        {
-            Sprint();
-        }
-    }
-
-    public void DodgeInput(InputAction.CallbackContext context)
-    {
-        if (isGrounded && context.performed)
-        {
-            StartCoroutine(Dodge());
-        }
-    }
-
-    #endregion
-
-    private void Jump()
+    public void Jump()
     {
         lastMove = moveDir;
         isJumping = true;
@@ -106,7 +92,7 @@ public class Movement : MonoBehaviour
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
-    private void Sprint()
+    public void Sprint()
     {
         if (!isSprinting)
         {
@@ -120,7 +106,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    IEnumerator Dodge()
+    public IEnumerator Dodge()
     {
         lastMove = moveDir;
         isDodging = true;

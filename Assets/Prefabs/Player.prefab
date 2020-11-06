@@ -125,6 +125,9 @@ GameObject:
   - component: {fileID: 3289670840166600009}
   - component: {fileID: 3289670840166600015}
   - component: {fileID: 3289670840166600012}
+  - component: {fileID: 379848482}
+  - component: {fileID: 379848484}
+  - component: {fileID: 379848483}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -207,7 +210,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3289670840166600015}
+      - m_Target: {fileID: 379848483}
         m_MethodName: MouseInput
         m_Mode: 0
         m_Arguments:
@@ -222,7 +225,7 @@ MonoBehaviour:
     m_ActionName: Player/MousePosition[/Mouse/position]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3289670840166600009}
+      - m_Target: {fileID: 379848483}
         m_MethodName: MoveInput
         m_Mode: 0
         m_Arguments:
@@ -237,7 +240,7 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3289670840166600009}
+      - m_Target: {fileID: 379848483}
         m_MethodName: JumpInput
         m_Mode: 0
         m_Arguments:
@@ -252,7 +255,7 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3289670840166600009}
+      - m_Target: {fileID: 379848483}
         m_MethodName: SprintInput
         m_Mode: 0
         m_Arguments:
@@ -267,7 +270,7 @@ MonoBehaviour:
     m_ActionName: Player/Sprint[/Keyboard/leftShift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3289670840166600009}
+      - m_Target: {fileID: 379848483}
         m_MethodName: DodgeInput
         m_Mode: 0
         m_Arguments:
@@ -282,7 +285,7 @@ MonoBehaviour:
     m_ActionName: Player/Dodge[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3289670840166600012}
+      - m_Target: {fileID: 379848484}
         m_MethodName: ScrollInput
         m_Mode: 0
         m_Arguments:
@@ -295,6 +298,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1c3166f5-e5b7-4cf0-8fe7-07f1502c49b3
     m_ActionName: Camera/Zoom[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 379848483}
+        m_MethodName: InteractInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9edc4755-ae11-4699-9f8b-90e6f1e73ec3
+    m_ActionName: Player/Interact[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Player
@@ -330,6 +348,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8eb4a2aa7195184999203c3a39bc7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 1536
 --- !u!114 &3289670840166600012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +364,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomSpeed: 50
+--- !u!114 &379848482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289670840166600011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85e47db44ab8ae4d8e91456bc43ca11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupRange: 5
+  mask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &379848484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289670840166600011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b563e58335f6a4dbd799da7071d7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &379848483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289670840166600011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb821f4e2e553d47830a607d37cab99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3289670840945448702
 GameObject:
   m_ObjectHideFlags: 0
