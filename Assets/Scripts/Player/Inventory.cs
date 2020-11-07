@@ -19,8 +19,13 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
-    public List<Item> items = new List<Item>();
+    List<Item> items = new List<Item>();
     [SerializeField] int space = 20;
+
+    public List<Item> GetItems()
+    {
+        return items;
+    }
 
     public bool AddItem(Item item)
     {

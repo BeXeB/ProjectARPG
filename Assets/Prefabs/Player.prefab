@@ -128,6 +128,8 @@ GameObject:
   - component: {fileID: 379848482}
   - component: {fileID: 379848484}
   - component: {fileID: 379848483}
+  - component: {fileID: 261275607}
+  - component: {fileID: 261275608}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -313,6 +315,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9edc4755-ae11-4699-9f8b-90e6f1e73ec3
     m_ActionName: Player/Interact[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 261275608}
+        m_MethodName: InventoryInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 24ba227a-d792-4a27-b3b5-ba90d862a1e4
+    m_ActionName: UI/Inventory[/Keyboard/i]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Player
@@ -376,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85e47db44ab8ae4d8e91456bc43ca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupRange: 5
+  interactRange: 5
   mask:
     serializedVersion: 2
     m_Bits: 1024
@@ -404,6 +421,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb821f4e2e553d47830a607d37cab99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &261275607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289670840166600011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4465240398c81e8439ebbe2bb9b172a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  space: 20
+--- !u!114 &261275608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289670840166600011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5f0f00e0d45a84abebbc439b1956a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 0}
 --- !u!1 &3289670840945448702
 GameObject:
   m_ObjectHideFlags: 0
