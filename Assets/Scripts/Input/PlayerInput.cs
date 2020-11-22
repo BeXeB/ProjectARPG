@@ -36,7 +36,7 @@ public class PlayerInput : MonoBehaviour
 
     public void JumpInput(InputAction.CallbackContext context)
     {
-        if (playerMovementScript.getIsGrounded() && !playerMovementScript.getIsDodgeing() && context.performed)
+        if (context.performed)
         {
             playerMovementScript.Jump();
         }
@@ -44,7 +44,7 @@ public class PlayerInput : MonoBehaviour
 
     public void SprintInput(InputAction.CallbackContext context)
     {
-        if ((playerMovementScript.getIsGrounded() || !playerMovementScript.getIsGrounded() && playerMovementScript.getIsSprinting()) && !playerMovementScript.getIsDodgeing() && (context.performed || context.canceled))
+        if(context.performed || context.canceled)
         {
             playerMovementScript.Sprint();
         }
@@ -52,8 +52,10 @@ public class PlayerInput : MonoBehaviour
 
     public void DodgeInput(InputAction.CallbackContext context)
     {
-        if (playerMovementScript.getIsGrounded() && context.performed)
+        if (context.performed)
         {
+            if(!playerMovementScript.getIsGrounded() || !playerMovementScript.getCanDodge())
+                return;
             StartCoroutine(playerMovementScript.Dodge());
         }
     }

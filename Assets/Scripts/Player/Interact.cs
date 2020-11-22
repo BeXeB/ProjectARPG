@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Interact : MonoBehaviour
 {
@@ -20,6 +19,7 @@ public class Interact : MonoBehaviour
 
     public void TryInteract()
     {
+        print("interacting");
         RaycastHit hit;
         Ray ray = playerCamera.ScreenPointToRay(_mousePos);
         if (Physics.Raycast(ray, out hit, 100f, mask))

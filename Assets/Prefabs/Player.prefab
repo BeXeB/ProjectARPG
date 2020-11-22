@@ -55,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3289670839851335241
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +215,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 379848483}
+        m_TargetAssemblyTypeName: 
         m_MethodName: MouseInput
         m_Mode: 0
         m_Arguments:
@@ -228,6 +231,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 379848483}
+        m_TargetAssemblyTypeName: 
         m_MethodName: MoveInput
         m_Mode: 0
         m_Arguments:
@@ -243,6 +247,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 379848483}
+        m_TargetAssemblyTypeName: 
         m_MethodName: JumpInput
         m_Mode: 0
         m_Arguments:
@@ -258,6 +263,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 379848483}
+        m_TargetAssemblyTypeName: 
         m_MethodName: SprintInput
         m_Mode: 0
         m_Arguments:
@@ -273,6 +279,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 379848483}
+        m_TargetAssemblyTypeName: 
         m_MethodName: DodgeInput
         m_Mode: 0
         m_Arguments:
@@ -288,6 +295,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 379848484}
+        m_TargetAssemblyTypeName: 
         m_MethodName: ScrollInput
         m_Mode: 0
         m_Arguments:
@@ -303,6 +311,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 379848483}
+        m_TargetAssemblyTypeName: 
         m_MethodName: InteractInput
         m_Mode: 0
         m_Arguments:
@@ -318,6 +327,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 261275608}
+        m_TargetAssemblyTypeName: 
         m_MethodName: InventoryInput
         m_Mode: 0
         m_Arguments:
@@ -353,6 +363,7 @@ MonoBehaviour:
   jumpControll: 0.5
   dodgeSpeed: 4
   dodgeDuration: 0.2
+  dodgeCooldown: 1
 --- !u!114 &3289670840166600015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4465240398c81e8439ebbe2bb9b172a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  space: 20
+  space: 88
 --- !u!114 &261275608
 MonoBehaviour:
   m_ObjectHideFlags: 0

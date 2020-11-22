@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -14,13 +13,14 @@ public class Inventory : MonoBehaviour
             return;
         }
         instance = this;
+
     }
 
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
+    [SerializeField] int space = 88;
     List<Item> items = new List<Item>();
-    [SerializeField] int space = 20;
 
     public List<Item> GetItems()
     {
@@ -53,5 +53,4 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
         }
     }
-
 }

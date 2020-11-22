@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpControll = 0.5f;
     [SerializeField] private float dodgeSpeed = 4f;
     [SerializeField] private float dodgeDuration = 0.2f;
+    [SerializeField] private float dodgeCooldown = 1f;
 
     private Transform cameraHolder;
     private Transform groundCheck;
@@ -18,6 +19,7 @@ public class Movement : MonoBehaviour
     private bool isGrounded;
     private bool isJumping;
     private bool isDodging;
+    private bool canDodge = true;
     private bool isSprinting;
     private float groundDistance = 0.1f;
 
@@ -28,14 +30,9 @@ public class Movement : MonoBehaviour
         return isGrounded;
     }
 
-    public bool getIsDodgeing()
+    public bool getCanDodge()
     {
-        return isDodging;
-    }
-
-    public bool getIsSprinting()
-    {
-        return isSprinting;
+        return canDodge;
     }
 
     public void setMoveDir(Vector2 newValue)
@@ -90,6 +87,8 @@ public class Movement : MonoBehaviour
 
     public void Jump()
     {
+        if (!isGrounded || isDodging)
+            return;
         lastMove = moveDir;
         isJumping = true;
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -112,9 +111,12 @@ public class Movement : MonoBehaviour
 
     public IEnumerator Dodge()
     {
+        canDodge = false;
         lastMove = moveDir;
         isDodging = true;
         yield return new WaitForSeconds(dodgeDuration);
         isDodging = false;
+        yield return new WaitForSeconds(dodgeCooldown);
+        canDodge = true;
     }
 }
