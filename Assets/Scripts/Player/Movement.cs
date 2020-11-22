@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
@@ -11,6 +9,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpControll = 0.5f;
     [SerializeField] private float dodgeSpeed = 4f;
     [SerializeField] private float dodgeDuration = 0.2f;
+    [SerializeField] private float dodgeCooldown = 1f;
 
     private Transform cameraHolder;
     private Transform groundCheck;
@@ -20,8 +19,28 @@ public class Movement : MonoBehaviour
     private bool isGrounded;
     private bool isJumping;
     private bool isDodging;
+    private bool canDodge = true;
     private bool isSprinting;
     private float groundDistance = 0.1f;
+
+    #region Getters/Setters
+
+    public bool getIsGrounded()
+    {
+        return isGrounded;
+    }
+
+    public bool getCanDodge()
+    {
+        return canDodge;
+    }
+
+    public void setMoveDir(Vector2 newValue)
+    {
+        moveDir = newValue;
+    }
+
+    #endregion
 
     private void Awake()
     {
@@ -34,21 +53,21 @@ public class Movement : MonoBehaviour
     {
         if (!isJumping && !isDodging)
         {
-            transform.position += 
-                (cameraHolder.forward * moveDir.y + cameraHolder.right * moveDir.x) * 
+            transform.position +=
+                (cameraHolder.forward * moveDir.y + cameraHolder.right * moveDir.x) *
                 Time.fixedDeltaTime * movementSpeed;
         }
         else if (isJumping)
         {
-            transform.position += 
+            transform.position +=
                 ((cameraHolder.forward * lastMove.y + cameraHolder.right * lastMove.x) +
-                (cameraHolder.forward * moveDir.y + cameraHolder.right * moveDir.x) * jumpControll) * 
+                (cameraHolder.forward * moveDir.y + cameraHolder.right * moveDir.x) * jumpControll) *
                 Time.fixedDeltaTime * movementSpeed * jumpSpeed;
         }
         else if (isDodging)
         {
-            transform.position += 
-                (cameraHolder.forward * lastMove.y + cameraHolder.right * lastMove.x) * 
+            transform.position +=
+                (cameraHolder.forward * lastMove.y + cameraHolder.right * lastMove.x) *
                 Time.fixedDeltaTime * movementSpeed * dodgeSpeed;
         }
     }
@@ -66,48 +85,17 @@ public class Movement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, mask);
     }
 
-    #region Input
-
-    public void MoveInput(InputAction.CallbackContext context)
+    public void Jump()
     {
-        moveDir = context.ReadValue<Vector2>();
-    }
-
-    public void JumpInput(InputAction.CallbackContext context)
-    {
-        if (isGrounded && !isDodging && context.performed)
-        {
-            Jump();
-        }
-    }
-
-    public void SprintInput(InputAction.CallbackContext context)
-    {
-        if ((isGrounded || !isGrounded && isSprinting) && !isDodging && (context.performed || context.canceled))
-        {
-            Sprint();
-        }
-    }
-
-    public void DodgeInput(InputAction.CallbackContext context)
-    {
-        if (isGrounded && context.performed)
-        {
-            StartCoroutine(Dodge());
-        }
-    }
-
-    #endregion
-
-    private void Jump()
-    {
+        if (!isGrounded || isDodging)
+            return;
         lastMove = moveDir;
         isJumping = true;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
-    private void Sprint()
+    public void Sprint()
     {
         if (!isSprinting)
         {
@@ -121,11 +109,14 @@ public class Movement : MonoBehaviour
         }
     }
 
-    IEnumerator Dodge()
+    public IEnumerator Dodge()
     {
+        canDodge = false;
         lastMove = moveDir;
         isDodging = true;
         yield return new WaitForSeconds(dodgeDuration);
         isDodging = false;
+        yield return new WaitForSeconds(dodgeCooldown);
+        canDodge = true;
     }
 }
