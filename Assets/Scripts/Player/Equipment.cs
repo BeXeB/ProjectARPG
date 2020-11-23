@@ -57,4 +57,9 @@ public class Equipment : MonoBehaviour
             onEquipmentChangedCallback.Invoke(null, oldItem);
         }
     }
+
+    public Equipable[] GetEquipment()
+    {
+        return currentEquipment;
+    }
 }

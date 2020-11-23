@@ -26,17 +26,17 @@ public class PlayerStats : CharacterStats
 
         if (oldItem != null)
         {
-            intelligence.RemoveModifier(newItem.intelligenceModifier);
-            strength.RemoveModifier(newItem.strengthModifier);
-            dexterity.RemoveModifier(newItem.dexterityModifier);
-            vitality.RemoveModifier(newItem.vitalityModifier);
-            if (newItem is Weapon)
+            intelligence.RemoveModifier(oldItem.intelligenceModifier);
+            strength.RemoveModifier(oldItem.strengthModifier);
+            dexterity.RemoveModifier(oldItem.dexterityModifier);
+            vitality.RemoveModifier(oldItem.vitalityModifier);
+            if (oldItem is Weapon)
             {
-                damage.RemoveModifier(((Weapon)newItem).damageModifier);
+                damage.RemoveModifier(((Weapon)oldItem).damageModifier);
             }
-            else if (newItem is Armor)
+            else if (oldItem is Armor)
             {
-                armor.RemoveModifier(((Armor)newItem).armorModifier);
+                armor.RemoveModifier(((Armor)oldItem).armorModifier);
             }
         }
     }
