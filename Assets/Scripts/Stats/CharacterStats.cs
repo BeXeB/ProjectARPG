@@ -10,9 +10,10 @@ public class CharacterStats : MonoBehaviour
     public Stat dexterity;
     public Stat armor;
     public Stat damage;
+    protected bool died = false;
 
-    public int maxHealth = 100;
-    public int currentHealt { get; private set; }
+    public float maxHealth = 100;
+    public float currentHealt { get; private set; }
 
     private void Awake()
     {
@@ -22,8 +23,8 @@ public class CharacterStats : MonoBehaviour
     public void TakeDamage(int incDmg)
     {
         //reduce dmg with armor
-        //NewDmg = Dmg/(1+(AH/100))
-        int reducedIncDmg = (int)Mathf.Round(incDmg/(1+(armor.GetValue()/armorPotency)));
+        //NewDmg = Dmg/(1+(Armor/100))
+        float reducedIncDmg = incDmg / (1 + (armor.GetValue() / armorPotency));
         currentHealt -= reducedIncDmg;
         Debug.Log(transform.name + " takes " + incDmg + " damage");
 
@@ -36,5 +37,6 @@ public class CharacterStats : MonoBehaviour
     public virtual void Die()
     {
         Debug.Log(transform.name + " Dies");
+        died = true;
     }
 }

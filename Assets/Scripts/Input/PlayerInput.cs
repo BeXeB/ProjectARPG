@@ -44,7 +44,7 @@ public class PlayerInput : MonoBehaviour
 
     public void SprintInput(InputAction.CallbackContext context)
     {
-        if(context.performed || context.canceled)
+        if (context.performed || context.canceled)
         {
             playerMovementScript.Sprint();
         }
@@ -54,9 +54,21 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-            if(!playerMovementScript.getIsGrounded() || !playerMovementScript.getCanDodge())
+            if (!playerMovementScript.getIsGrounded() || !playerMovementScript.getCanDodge())
                 return;
             StartCoroutine(playerMovementScript.Dodge());
+        }
+    }
+
+    public void AttackInput(InputAction.CallbackContext context)
+    {
+        if (context.performed && !playerMovementScript.getIsDodgeing())
+        {
+            var weapon = (Weapon)Equipment.instance.GetEquipment()[8];
+            if (weapon)
+            {
+                weapon.Attack();
+            }
         }
     }
 }

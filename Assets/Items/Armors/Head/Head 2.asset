@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70e25c7a7fa4a3f47928e46d0609473f, type: 3}
-  m_Name: New Armor
+  m_Name: Head 2
   m_EditorClassIdentifier: 
-  name: New Item
-  icon: {fileID: 21300000, guid: 9abfd26dcd6fae346801536e04e7575b, type: 3}
+  name: Head 2
+  icon: {fileID: 21300000, guid: 58b45e45b8714cd4da073203bf34bc18, type: 3}
   isDefaultItem: 0
   equipSlot: 0
-  level: 10
-  intelligenceModifier: 10
-  strengthModifier: 100
-  vitalityModifier: 123
-  dexterityModifier: 2
-  armorModifier: 12
-  baseArmor: 5
+  level: 20
+  intelligenceModifier: 20
+  strengthModifier: 20
+  vitalityModifier: 20
+  dexterityModifier: 20
+  armorModifier: 20
+  baseArmor: 20

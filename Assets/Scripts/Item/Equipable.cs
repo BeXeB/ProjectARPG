@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Equipment", menuName = "Inventory/Equipment")]
 public class Equipable : Item
 {
     public EquipmentSlot equipSlot;

@@ -14,7 +14,7 @@ public class Interact : MonoBehaviour
 
     private void Awake()
     {
-        playerCamera = GameObject.Find("Player/CameraHolder/MainCamera").GetComponent<Camera>();
+        playerCamera = PlayerManager.instance.player.transform.GetChild(2).GetChild(0).GetComponent<Camera>();
     }
 
     public void TryInteract()

@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[CreateAssetMenu(fileName = "New Core", menuName = "Inventory/Core")]
 public class Core : Equipable
 {
 

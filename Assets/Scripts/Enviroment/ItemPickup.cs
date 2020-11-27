@@ -2,7 +2,7 @@
 
 public class ItemPickup : Interactable
 {
-    [SerializeField] Item item;
+    [SerializeField] public Item item;
 
     public override void OnInteract()
     {

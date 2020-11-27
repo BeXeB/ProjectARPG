@@ -15,8 +15,8 @@ public class Zoom : MonoBehaviour
 
     private void Awake()
     {
-        cameraTransform = GameObject.Find("Player/CameraHolder/MainCamera").transform;
-        playerTransform = GameObject.Find("Player/PlayerModel").transform;
+        cameraTransform = PlayerManager.instance.player.transform.GetChild(2).GetChild(0);
+        playerTransform = PlayerManager.instance.player.transform.GetChild(0);
     }
 
     private void FixedUpdate()
