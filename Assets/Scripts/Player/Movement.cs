@@ -30,6 +30,11 @@ public class Movement : MonoBehaviour
         return isGrounded;
     }
 
+    public bool getIsDodgeing()
+    {
+        return isDodging;
+    }
+
     public bool getCanDodge()
     {
         return canDodge;
@@ -42,11 +47,11 @@ public class Movement : MonoBehaviour
 
     #endregion
 
-    private void Awake()
+    private void Start()
     {
         mask = LayerMask.GetMask("Ground");
-        groundCheck = GameObject.Find("Player/GroundCheck").transform;
-        cameraHolder = GameObject.Find("Player/CameraHolder").transform;
+        groundCheck = PlayerManager.instance.player.transform.GetChild(1).transform;
+        cameraHolder = PlayerManager.instance.player.transform.GetChild(2).transform;
     }
 
     public void FixedUpdate()

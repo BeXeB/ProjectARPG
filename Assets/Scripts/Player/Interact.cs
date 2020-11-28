@@ -12,9 +12,9 @@ public class Interact : MonoBehaviour
         _mousePos = newValue;
     }
 
-    private void Awake()
+    private void Start()
     {
-        playerCamera = GameObject.Find("Player/CameraHolder/MainCamera").GetComponent<Camera>();
+        playerCamera = PlayerManager.instance.player.transform.GetChild(2).GetChild(0).GetComponent<Camera>();
     }
 
     public void TryInteract()

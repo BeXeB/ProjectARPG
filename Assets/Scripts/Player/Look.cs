@@ -12,10 +12,10 @@ public class Look : MonoBehaviour
         _mousePos = newValue;
     }
 
-    private void Awake()
+    private void Start()
     {
-        playerCamera = GameObject.Find("Player/CameraHolder/MainCamera").GetComponent<Camera>();
-        playerModel = GameObject.Find("Player/PlayerModel").transform;
+        playerCamera = PlayerManager.instance.player.transform.GetChild(2).GetChild(0).GetComponent<Camera>();
+        playerModel = PlayerManager.instance.player.transform.GetChild(0);
     }
 
     private void FixedUpdate()
