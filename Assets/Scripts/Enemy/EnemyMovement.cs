@@ -30,7 +30,8 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void FaceTarget(){
+    private void FaceTarget()
+    {
         Vector3 dir = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dir.x, 0f, dir.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.fixedDeltaTime * 10f);

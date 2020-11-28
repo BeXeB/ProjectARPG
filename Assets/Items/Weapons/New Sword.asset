@@ -27,5 +27,5 @@ MonoBehaviour:
   baseDmg: 1
   twoHanded: 0
   attackSpeed: 1
-  attackAngle: 0
+  attackAngle: 60
   reach: 3

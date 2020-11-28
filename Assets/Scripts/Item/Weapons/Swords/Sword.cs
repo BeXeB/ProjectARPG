@@ -14,10 +14,11 @@ public class Sword : Melee
             if (stats)
             {
                 Vector3 dir = (collider.transform.position - playerModel.position).normalized;
-                Debug.Log(playerModel.forward);
-                Debug.DrawRay(playerModel.position, dir * 10f, Color.red, 50f);
                 //calculate angle, ignore y component
-                if (true) //check angle
+                Quaternion rotation = Quaternion.FromToRotation(playerModel.forward, new Vector3(dir.x, 0, dir.z));
+                Debug.Log(rotation.eulerAngles.y);
+                float angle = rotation.eulerAngles.y;
+                if (angle <= attackAngle || angle >= (360f - attackAngle)) //check angle
                 {
                     //need a calculate damage method prob at stat
                     stats.TakeDamage(baseDmg);

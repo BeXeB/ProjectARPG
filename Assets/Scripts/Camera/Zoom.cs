@@ -13,7 +13,7 @@ public class Zoom : MonoBehaviour
         scroll = newValue;
     }
 
-    private void Awake()
+    private void Start()
     {
         cameraTransform = PlayerManager.instance.player.transform.GetChild(2).GetChild(0);
         playerTransform = PlayerManager.instance.player.transform.GetChild(0);

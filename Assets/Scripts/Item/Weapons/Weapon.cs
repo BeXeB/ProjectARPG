@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Weapon : Equipable
 {
@@ -16,5 +15,5 @@ public class Weapon : Equipable
     }
 }
 
-public enum Type { Sword, Hammer, Axe, Sicle, Gauntlet, Pistol, SMG, Rifle, Sniper, LMG, Launcher }
+public enum Type { Sword/*, Hammer, Axe, Sicle, Gauntlet*/, Pistol/*, SMG, Rifle, Sniper, LMG, Launcher*/ }
 public enum Range { Melee, Ranged }

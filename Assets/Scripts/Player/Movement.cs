@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour
 
     #endregion
 
-    private void Awake()
+    private void Start()
     {
         mask = LayerMask.GetMask("Ground");
         groundCheck = PlayerManager.instance.player.transform.GetChild(1).transform;
