@@ -20,7 +20,6 @@ public class Movement : MonoBehaviour
     private bool isJumping;
     private bool isDodging;
     private bool canDodge = true;
-    private bool isSprinting;
     private float groundDistance = 0.1f;
 
     #region Getters/Setters
@@ -38,6 +37,11 @@ public class Movement : MonoBehaviour
     public bool getCanDodge()
     {
         return canDodge;
+    }
+
+    public Vector2 getMoveDir()
+    {
+        return moveDir;
     }
 
     public void setMoveDir(Vector2 newValue)
@@ -98,20 +102,6 @@ public class Movement : MonoBehaviour
         isJumping = true;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
-
-    public void Sprint()
-    {
-        if (!isSprinting)
-        {
-            isSprinting = true;
-            movementSpeed *= 1.6f;
-        }
-        else
-        {
-            isSprinting = false;
-            movementSpeed /= 1.6f;
-        }
     }
 
     public IEnumerator Dodge()

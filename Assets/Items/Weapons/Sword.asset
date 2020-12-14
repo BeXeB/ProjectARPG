@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6ae55655d9f01b49bc4c171f0bfcce2, type: 3}
-  m_Name: New Sword
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  name: Sword
-  icon: {fileID: 21300000, guid: 9abfd26dcd6fae346801536e04e7575b, type: 3}
+  name: New Item
+  icon: {fileID: 0}
   isDefaultItem: 0
   equipSlot: 8
   level: 10
-  intelligenceModifier: 10
-  strengthModifier: 10
-  vitalityModifier: 10
-  dexterityModifier: 10
-  damageModifier: 10
+  intelligenceModifier: 0
+  strengthModifier: 0
+  vitalityModifier: 0
+  dexterityModifier: 0
+  damageModifier: 0
   weaponType: 0
   weaponRange: 0
-  baseDmg: 100
+  baseDmg: 0
   twoHanded: 0
-  attackSpeed: 1
-  attackAngle: 60
-  reach: 3
+  attackSpeed: 0
+  attackAngle: 0
+  reach: 0

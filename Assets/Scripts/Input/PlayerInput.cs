@@ -42,14 +42,6 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    public void SprintInput(InputAction.CallbackContext context)
-    {
-        if (context.performed || context.canceled)
-        {
-            playerMovementScript.Sprint();
-        }
-    }
-
     public void DodgeInput(InputAction.CallbackContext context)
     {
         if (context.performed)

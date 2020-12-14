@@ -30,14 +30,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Sprint",
-                    "type": "Button",
-                    "id": "9cfb1d55-1984-4044-974d-45864ee77b34",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Dodge",
                     "type": "Button",
                     "id": "a3ac5af2-ce28-45d6-b7cc-06d60f8bbcc5",
@@ -137,17 +129,6 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "158a0fc2-b4da-4fc5-a2b7-cbd0c73f2516",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

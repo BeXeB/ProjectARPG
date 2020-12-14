@@ -30,20 +30,15 @@ public class Equipment : MonoBehaviour
     public void Equip(Equipable newItem)
     {
         int slotIndex = (int)newItem.equipSlot;
-        Equipable oldItem = null;
-        if (currentEquipment[slotIndex] != null)
-        {
-            oldItem = currentEquipment[slotIndex];
-            inventory.AddItem(oldItem);
-        }
-        currentEquipment[slotIndex] = newItem;
+        Equipable oldItem = Unequip(slotIndex);
         if (onEquipmentChangedCallback != null)
         {
             onEquipmentChangedCallback.Invoke(newItem, oldItem);
         }
+        currentEquipment[slotIndex] = newItem;
     }
 
-    public void Unequip(int slotIndex)
+    public Equipable Unequip(int slotIndex)
     {
         Equipable oldItem = null;
         if (currentEquipment[slotIndex] != null)
@@ -56,6 +51,7 @@ public class Equipment : MonoBehaviour
         {
             onEquipmentChangedCallback.Invoke(null, oldItem);
         }
+        return oldItem;
     }
 
     public Equipable[] GetEquipment()
