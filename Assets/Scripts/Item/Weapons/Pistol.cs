@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Pistol", menuName = "Inventory/Weapons/Pistol")]
 public class Pistol : Weapon

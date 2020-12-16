@@ -6,14 +6,14 @@ public class PlayerInput : MonoBehaviour
     private Movement playerMovementScript;
     private Look playerLookScript;
     private Interact playerInteractScript;
-    private PlayerStats playerStatsScript;
+    private PlayerAttack playerAttackScript;
 
     private void Start()
     {
         playerMovementScript = GetComponent<Movement>();
         playerLookScript = GetComponent<Look>();
         playerInteractScript = GetComponent<Interact>();
-        playerStatsScript = GetComponent<PlayerStats>();
+        playerAttackScript = GetComponent<PlayerAttack>();
     }
 
     public void InteractInput(InputAction.CallbackContext context)
@@ -58,11 +58,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed && !playerMovementScript.getIsDodgeing())
         {
-            var weapon = (Weapon)Equipment.instance.GetEquipment()[8];
-            if (weapon)
-            {
-                weapon.Attack(playerStatsScript.CalcWeaponDmg());
-            }
+            playerAttackScript.Attack();
         }
     }
 }
