@@ -4,6 +4,7 @@ public class CharacterStats : MonoBehaviour
 {
     [SerializeField]
     private float armorPotency = 100f;
+    private float strengthPotency = 100f;
     public Stat intelligence;
     public Stat strength;
     public Stat vitality;
@@ -32,6 +33,14 @@ public class CharacterStats : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public float CalcWeaponDmg()
+    {
+        float dmg = damage.GetValue();
+        dmg *= 1 + (strength.GetValue() / strengthPotency);
+        print(dmg);
+        return dmg;
     }
 
     public virtual void Die()

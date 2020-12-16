@@ -31,11 +31,11 @@ public class Equipment : MonoBehaviour
     {
         int slotIndex = (int)newItem.equipSlot;
         Equipable oldItem = Unequip(slotIndex);
+        currentEquipment[slotIndex] = newItem;
         if (onEquipmentChangedCallback != null)
         {
             onEquipmentChangedCallback.Invoke(newItem, oldItem);
         }
-        currentEquipment[slotIndex] = newItem;
     }
 
     public Equipable Unequip(int slotIndex)

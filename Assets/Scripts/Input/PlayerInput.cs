@@ -6,12 +6,14 @@ public class PlayerInput : MonoBehaviour
     private Movement playerMovementScript;
     private Look playerLookScript;
     private Interact playerInteractScript;
+    private PlayerStats playerStatsScript;
 
-    private void Awake()
+    private void Start()
     {
-        playerMovementScript = gameObject.GetComponent<Movement>();
-        playerLookScript = gameObject.GetComponent<Look>();
-        playerInteractScript = gameObject.GetComponent<Interact>();
+        playerMovementScript = GetComponent<Movement>();
+        playerLookScript = GetComponent<Look>();
+        playerInteractScript = GetComponent<Interact>();
+        playerStatsScript = GetComponent<PlayerStats>();
     }
 
     public void InteractInput(InputAction.CallbackContext context)
@@ -59,7 +61,7 @@ public class PlayerInput : MonoBehaviour
             var weapon = (Weapon)Equipment.instance.GetEquipment()[8];
             if (weapon)
             {
-                weapon.Attack();
+                weapon.Attack(playerStatsScript.CalcWeaponDmg());
             }
         }
     }

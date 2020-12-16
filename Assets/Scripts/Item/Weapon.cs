@@ -2,16 +2,22 @@
 
 public class Weapon : Equipable
 {
+    protected Transform playerModel;
     public int damageModifier = 0;
     public Type weaponType;
     public int baseDmg = 0;
     public int attackSpeed = 0;
     public int magSize = 0;
     public int reloadSpeed = 0;
-    public virtual void Attack()
+    public GameObject projectile;
+    public virtual void Attack(float calcDamage)
     {
         Debug.Log("Attacking");
+        if (playerModel == null)
+        {
+            playerModel = PlayerManager.instance.player.transform.GetChild(0).transform;
+        }
     }
 }
 
-public enum Type { Pistol/*, SMG, Rifle, Sniper, LMG, Launcher*/ }
+public enum Type { Pistol/*, SMG, Shotgun, Rifle, Sniper, LMG, Launcher*/ }
