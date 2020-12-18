@@ -11,8 +11,14 @@ public class ProjectileBase : MonoBehaviour
         transform.position += transform.forward * speed * Time.deltaTime;
     }
 
-    private void OnCollisionEnter(Collision other) {
+    private void OnCollisionEnter(Collision other)
+    {
         print("Hit: " + other.transform.name);
-        Destroy(this);
+        CharacterStats stats = other.gameObject.GetComponent<CharacterStats>();
+        if (stats)
+        {
+            stats.TakeDamage(damage);   
+        }
+        Destroy(this.gameObject);
     }
 }

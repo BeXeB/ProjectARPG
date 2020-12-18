@@ -24,8 +24,9 @@ MonoBehaviour:
   damageModifier: 1
   weaponType: 0
   baseDmg: 1
-  attackSpeed: 1
-  magSize: 1
-  reloadSpeed: 1
+  attackSpeed: 10
+  currentMag: 0
+  magSize: 2
+  reloadSpeed: 10
   projectile: {fileID: 1004878948995032958, guid: f0519ace9dff13f4ebaf1f1f9bb72d96,
     type: 3}

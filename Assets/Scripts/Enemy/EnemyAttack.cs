@@ -1,18 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject projectile;
+    public float damage = 10f;
+    private float attackCooldown = 0f;
+    public float attackSpeed = 3f;
+    private void Update()
     {
-
+        attackCooldown -= Time.deltaTime;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Attack()
     {
-
+        if (attackCooldown <= 0f)
+        {
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z + 0.5f);
+            var createdObject = Instantiate(projectile, pos, transform.rotation);
+            createdObject.GetComponent<ProjectileBase>().damage = damage;
+            attackCooldown = 1f / attackSpeed;
+            Destroy(createdObject, 5f);
+        }
     }
 }

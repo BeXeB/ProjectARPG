@@ -4,12 +4,13 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     public float lookRadius = 10f;
-
     Transform target;
     NavMeshAgent agent;
+    EnemyAttack enemyAttack;
 
     private void Start()
     {
+        enemyAttack = GetComponent<EnemyAttack>();
         target = PlayerManager.instance.player.transform.GetChild(0);
         agent = GetComponent<NavMeshAgent>();
     }
@@ -24,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
 
             if (distance <= agent.stoppingDistance)
             {
-                //Attack
+                enemyAttack.Attack();
                 FaceTarget();
             }
         }

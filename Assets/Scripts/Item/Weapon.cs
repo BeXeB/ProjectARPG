@@ -7,12 +7,12 @@ public class Weapon : Equipable
     public Type weaponType;
     public int baseDmg = 0;
     public int attackSpeed = 0;
+    public int currentMag = 0;
     public int magSize = 0;
     public int reloadSpeed = 0;
     public GameObject projectile;
     public virtual void Attack(float calcDamage)
     {
-        Debug.Log("Attacking");
         if (playerModel == null)
         {
             playerModel = PlayerManager.instance.player.transform.GetChild(0).transform;

@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &6430137580455257100
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879405554841413666}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: aa5b2279042a0904692d6bbecf22a56f, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6ea769251edb1c4459d48e7c50c22bdf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6430137580037179525
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +154,7 @@ GameObject:
   - component: {fileID: 6430137580712168071}
   - component: {fileID: 6430137580712168070}
   - component: {fileID: 5456028285515785954}
+  - component: {fileID: 282193548}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -174,7 +194,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &6430137580712168095
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -381,7 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 3584
 --- !u!114 &6430137580712168091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,6 +506,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ce201f420329e44942f4708cc88035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &282193548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6430137580712168065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8494d0d1a2cc9f41b9952914ab90e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6430137581651488997
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,6 +615,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: charachter model
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: aa5b2279042a0904692d6bbecf22a56f,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6ea769251edb1c4459d48e7c50c22bdf, type: 2}
     - target: {fileID: 8417361359673230750, guid: aa5b2279042a0904692d6bbecf22a56f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -590,6 +627,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b8f71856e94e6174f805defec16e49d7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa5b2279042a0904692d6bbecf22a56f, type: 3}
+--- !u!1 &3879405554841413666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aa5b2279042a0904692d6bbecf22a56f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4113760210801317235}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4511967326552175256 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aa5b2279042a0904692d6bbecf22a56f,

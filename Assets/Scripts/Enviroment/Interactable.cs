@@ -2,8 +2,5 @@
 
 public class Interactable : MonoBehaviour
 {
-    public virtual void OnInteract()
-    {
-        Debug.Log(gameObject.name);
-    }
+    public virtual void OnInteract() { }
 }

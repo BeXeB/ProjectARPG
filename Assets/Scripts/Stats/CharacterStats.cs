@@ -21,13 +21,13 @@ public class CharacterStats : MonoBehaviour
         currentHealt = maxHealth;
     }
 
-    public void TakeDamage(int incDmg)
+    public void TakeDamage(float incDmg)
     {
         //reduce dmg with armor
         //NewDmg = Dmg/(1+(Armor/100))
         float reducedIncDmg = incDmg / (1 + (armor.GetValue() / armorPotency));
         currentHealt -= reducedIncDmg;
-        Debug.Log(transform.name + " takes " + incDmg + " damage");
+        Debug.Log(transform.name + " takes " + reducedIncDmg + " damage");
 
         if (currentHealt <= 0)
         {
@@ -39,7 +39,6 @@ public class CharacterStats : MonoBehaviour
     {
         float dmg = damage.GetValue();
         dmg *= 1 + (strength.GetValue() / strengthPotency);
-        print(dmg);
         return dmg;
     }
 
