@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         enemyAttack = GetComponent<EnemyAttack>();
-        target = PlayerManager.instance.player.transform.GetChild(0);
+        target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
     }
 

@@ -2,19 +2,19 @@
 
 public class CharacterStats : MonoBehaviour
 {
-    [SerializeField]
-    private float armorPotency = 100f;
-    private float strengthPotency = 100f;
-    public Stat intelligence;
-    public Stat strength;
-    public Stat vitality;
-    public Stat dexterity;
-    public Stat armor;
-    public Stat damage;
+    [SerializeField] private float armorPotency = 100f;
+    [SerializeField] private float strengthPotency = 100f;
+    [SerializeField] private float inteligencePotency = 100f;
+    [SerializeField] protected Stat intelligence;
+    [SerializeField] protected Stat strength;
+    [SerializeField] protected Stat vitality;
+    [SerializeField] protected Stat dexterity;
+    [SerializeField] protected Stat armor;
+    [SerializeField] protected Stat damage;
     protected bool died = false;
 
-    public float maxHealth = 100;
-    public float currentHealt { get; private set; }
+    protected float maxHealth = 100;
+    protected float currentHealt { get; private set; }
 
     private void Awake()
     {
@@ -27,7 +27,6 @@ public class CharacterStats : MonoBehaviour
         //NewDmg = Dmg/(1+(Armor/100))
         float reducedIncDmg = incDmg / (1 + (armor.GetValue() / armorPotency));
         currentHealt -= reducedIncDmg;
-        Debug.Log(transform.name + " takes " + reducedIncDmg + " damage");
 
         if (currentHealt <= 0)
         {
@@ -42,9 +41,14 @@ public class CharacterStats : MonoBehaviour
         return dmg;
     }
 
+    public float CalcSpellDmG(float baseSpellDamage)
+    {
+        baseSpellDamage *= 1 + (intelligence.GetValue() / inteligencePotency);
+        return baseSpellDamage;
+    }
+
     public virtual void Die()
     {
-        Debug.Log(transform.name + " Dies");
         died = true;
     }
 }

@@ -15,35 +15,35 @@ public class Zoom : MonoBehaviour
 
     private void Start()
     {
-        cameraTransform = PlayerManager.instance.player.transform.GetChild(2).GetChild(0);
-        playerTransform = PlayerManager.instance.player.transform.GetChild(0);
+        cameraTransform = FindObjectOfType<Camera>().transform;
+        playerTransform = PlayerManager.instance.player.transform;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (scroll.y != 0)
         {
             ChangeOffset();
             offset.y = Mathf.Clamp(offset.y, 2f, 15f);
             offset.z = Mathf.Clamp(offset.z, -15f, -6f);
-            cameraTransform.parent.localPosition = playerTransform.localPosition + offset;
         }
-        cameraTransform.localRotation = Quaternion.LookRotation(playerTransform.localPosition - cameraTransform.parent.localPosition);
+        cameraTransform.parent.position = playerTransform.position + offset;
+        cameraTransform.rotation = Quaternion.LookRotation(playerTransform.position - cameraTransform.parent.position);
     }
 
     private void ChangeOffset()
     {
         if (scroll.y > 0)
         {
-            offset.y -= zoomSpeed * Time.fixedDeltaTime;
-            offset.z += zoomSpeed * Time.fixedDeltaTime;
+            offset.y -= zoomSpeed * Time.deltaTime;
+            offset.z += zoomSpeed * Time.deltaTime;
         }
         else
         {
-            offset.y += zoomSpeed * Time.fixedDeltaTime;
+            offset.y += zoomSpeed * Time.deltaTime;
             if (offset.y > 6f)
             {
-                offset.z -= zoomSpeed * Time.fixedDeltaTime;
+                offset.z -= zoomSpeed * Time.deltaTime;
             }
         }
         scroll = Vector2.zero;

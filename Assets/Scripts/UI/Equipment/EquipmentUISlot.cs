@@ -22,6 +22,6 @@ public class EquipmentUISlot : MonoBehaviour
 
     public void Unequip()
     {
-        Equipment.instance.Unequip((int)equipment.equipSlot);
+        PlayerManager.instance.player.GetComponent<Equipment>().Unequip((int)equipment.equipSlot);
     }
 }

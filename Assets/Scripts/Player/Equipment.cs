@@ -2,18 +2,6 @@
 
 public class Equipment : MonoBehaviour
 {
-    public static Equipment instance;
-
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogWarning("More than one Equipment instance");
-            return;
-        }
-        instance = this;
-    }
-
     Equipable[] currentEquipment;
     Inventory inventory;
 
@@ -22,7 +10,7 @@ public class Equipment : MonoBehaviour
 
     private void Start()
     {
-        inventory = Inventory.instance;
+        inventory = GetComponent<Inventory>();
         int numberOfslots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipable[numberOfslots];
     }

@@ -10,7 +10,7 @@ public class CameraInput : MonoBehaviour
     private void Awake()
     {
         inputActions = GetComponent<UnityEngine.InputSystem.PlayerInput>().actions;
-        cameraZoomScript = gameObject.GetComponent<Zoom>();
+        cameraZoomScript = FindObjectOfType<Camera>().transform.parent.GetComponent<Zoom>();
     }
 
     public void ScrollInput(InputAction.CallbackContext context)

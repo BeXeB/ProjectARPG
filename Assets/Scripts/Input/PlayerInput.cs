@@ -3,13 +3,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
+    private InputActionAsset inputActions;
     private Movement playerMovementScript;
     private Look playerLookScript;
     private Interact playerInteractScript;
     private PlayerAttack playerAttackScript;
 
-    private void Start()
+    private void Awake()
     {
+        inputActions = GetComponent<UnityEngine.InputSystem.PlayerInput>().actions;
         playerMovementScript = GetComponent<Movement>();
         playerLookScript = GetComponent<Look>();
         playerInteractScript = GetComponent<Interact>();
@@ -60,5 +62,15 @@ public class PlayerInput : MonoBehaviour
         {
             playerAttackScript.Attack();
         }
+    }
+
+    void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    void OnDisable()
+    {
+        inputActions.Disable();
     }
 }

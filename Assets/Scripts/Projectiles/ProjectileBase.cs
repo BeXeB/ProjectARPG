@@ -3,8 +3,13 @@
 public class ProjectileBase : MonoBehaviour
 {
 
-    public float speed;
-    public float damage;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float damage;
+
+    public void SetDamage(float value)
+    {
+        damage = value;
+    }
 
     private void Update()
     {
@@ -13,11 +18,10 @@ public class ProjectileBase : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        print("Hit: " + other.transform.name);
         CharacterStats stats = other.gameObject.GetComponent<CharacterStats>();
         if (stats)
         {
-            stats.TakeDamage(damage);   
+            stats.TakeDamage(damage);
         }
         Destroy(this.gameObject);
     }

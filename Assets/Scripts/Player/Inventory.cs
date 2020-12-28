@@ -3,19 +3,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static Inventory instance;
-
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogWarning("More than one Inventory instance");
-            return;
-        }
-        instance = this;
-
-    }
-
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
@@ -33,7 +20,6 @@ public class Inventory : MonoBehaviour
         {
             if (items.Count >= space)
             {
-                Debug.Log("Inventory Full");
                 return false;
             }
             items.Add(item);

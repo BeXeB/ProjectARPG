@@ -14,8 +14,8 @@ public class Look : MonoBehaviour
 
     private void Start()
     {
-        playerCamera = PlayerManager.instance.player.transform.GetChild(2).GetChild(0).GetComponent<Camera>();
-        playerModel = PlayerManager.instance.player.transform.GetChild(0);
+        playerCamera = FindObjectOfType<Camera>();
+        playerModel = PlayerManager.instance.player.transform;
     }
 
     private void FixedUpdate()

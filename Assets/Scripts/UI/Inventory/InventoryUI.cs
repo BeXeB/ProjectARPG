@@ -8,7 +8,7 @@ public class InventoryUI : MonoBehaviour
 
     private void Start()
     {
-        inventory = Inventory.instance;
+        inventory = PlayerManager.instance.player.GetComponent<Inventory>();
         inventory.onItemChangedCallback += UpdateUI;
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
     }

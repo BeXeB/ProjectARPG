@@ -3,7 +3,7 @@ public class PlayerStats : CharacterStats
 {
     private void Start()
     {
-        Equipment.instance.onEquipmentChangedCallback += OnEquipmentChanged;
+        PlayerManager.instance.player.GetComponent<Equipment>().onEquipmentChangedCallback += OnEquipmentChanged;
     }
 
     void OnEquipmentChanged(Equipable newItem, Equipable oldItem)

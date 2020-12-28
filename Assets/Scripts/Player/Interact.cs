@@ -14,7 +14,7 @@ public class Interact : MonoBehaviour
 
     private void Start()
     {
-        playerCamera = PlayerManager.instance.player.transform.GetChild(2).GetChild(0).GetComponent<Camera>();
+        playerCamera = FindObjectOfType<Camera>();
     }
 
     public void TryInteract()

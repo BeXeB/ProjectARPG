@@ -11,7 +11,7 @@ public class EquipmentUI : MonoBehaviour
 
     private void Start()
     {
-        equipment = Equipment.instance;
+        equipment = PlayerManager.instance.player.GetComponent<Equipment>();
         equipment.onEquipmentChangedCallback += UpdateUI;
         slots = equipmentParent.GetComponentsInChildren<EquipmentUISlot>();
     }

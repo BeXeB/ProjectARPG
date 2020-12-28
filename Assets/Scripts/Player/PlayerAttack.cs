@@ -20,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
     }
     public void Attack()
     {
-        var weapon = (Weapon)Equipment.instance.GetEquipment()[8];
+        var weapon = (Weapon)PlayerManager.instance.player.GetComponent<Equipment>().GetEquipment()[8];
         if (weapon && attackCooldown <= 0f && reloadCooldown <= 0f)
         {
             if (weapon.currentMag == 0)

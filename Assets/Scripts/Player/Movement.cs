@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
     [SerializeField] private float dodgeDuration = 0.2f;
     [SerializeField] private float dodgeCooldown = 1f;
 
-    private Transform cameraHolder;
     private Transform groundCheck;
     private LayerMask mask;
     private Vector2 moveDir;
@@ -55,33 +54,9 @@ public class Movement : MonoBehaviour
     {
         mask = LayerMask.GetMask("Ground");
         groundCheck = PlayerManager.instance.player.transform.GetChild(1).transform;
-        cameraHolder = PlayerManager.instance.player.transform.GetChild(2).transform;
     }
 
     public void FixedUpdate()
-    {
-        if (!isJumping && !isDodging)
-        {
-            transform.position +=
-                (cameraHolder.forward * moveDir.y + cameraHolder.right * moveDir.x) *
-                Time.fixedDeltaTime * movementSpeed;
-        }
-        else if (isJumping)
-        {
-            transform.position +=
-                ((cameraHolder.forward * lastMove.y + cameraHolder.right * lastMove.x) +
-                (cameraHolder.forward * moveDir.y + cameraHolder.right * moveDir.x) * jumpControll) *
-                Time.fixedDeltaTime * movementSpeed * jumpSpeed;
-        }
-        else if (isDodging)
-        {
-            transform.position +=
-                (cameraHolder.forward * lastMove.y + cameraHolder.right * lastMove.x) *
-                Time.fixedDeltaTime * movementSpeed * dodgeSpeed;
-        }
-    }
-
-    private void Update()
     {
         if (!isGrounded)
         {
@@ -92,6 +67,25 @@ public class Movement : MonoBehaviour
             }
         }
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, mask);
+        if (!isJumping && !isDodging)
+        {
+            transform.position +=
+                (UnityEngine.Vector3.forward * moveDir.y + Vector3.right * moveDir.x) *
+                Time.fixedDeltaTime * movementSpeed;
+        }
+        else if (isJumping)
+        {
+            transform.position +=
+                ((Vector3.forward * lastMove.y + Vector3.right * lastMove.x) +
+                (Vector3.forward * moveDir.y + Vector3.right * moveDir.x) * jumpControll) *
+                Time.fixedDeltaTime * movementSpeed * jumpSpeed;
+        }
+        else if (isDodging)
+        {
+            transform.position +=
+                (Vector3.forward * lastMove.y + Vector3.right * lastMove.x) *
+                Time.fixedDeltaTime * movementSpeed * dodgeSpeed;
+        }
     }
 
     public void Jump()

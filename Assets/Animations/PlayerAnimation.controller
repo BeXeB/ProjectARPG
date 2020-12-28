@@ -20,7 +20,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -9151291186878076761, guid: aa5b2279042a0904692d6bbecf22a56f,
       type: 3}
-    m_Threshold: 0.125
+    m_Threshold: 0.09876543
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -29,7 +29,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 4289208157112357713, guid: aa5b2279042a0904692d6bbecf22a56f,
       type: 3}
-    m_Threshold: 0.25
+    m_Threshold: 0.19753087
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -38,7 +38,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -633742933821055264, guid: aa5b2279042a0904692d6bbecf22a56f,
       type: 3}
-    m_Threshold: 0.375
+    m_Threshold: 0.2962963
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -47,7 +47,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 5136647912240655905, guid: aa5b2279042a0904692d6bbecf22a56f,
       type: 3}
-    m_Threshold: 0.5
+    m_Threshold: 0.39506173
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -56,7 +56,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -2178705530178840914, guid: aa5b2279042a0904692d6bbecf22a56f,
       type: 3}
-    m_Threshold: 0.625
+    m_Threshold: 0.49382716
     m_Position: {x: 0.7, y: 0.7}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -65,7 +65,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -4062528723736008580, guid: aa5b2279042a0904692d6bbecf22a56f,
       type: 3}
-    m_Threshold: 0.75
+    m_Threshold: 0.5925926
     m_Position: {x: 0.7, y: -0.7}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -74,7 +74,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 539905950192400088, guid: aa5b2279042a0904692d6bbecf22a56f,
       type: 3}
-    m_Threshold: 0.875
+    m_Threshold: 0.69135803
     m_Position: {x: -0.7, y: 0.7}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -83,7 +83,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -2075805530855505750, guid: aa5b2279042a0904692d6bbecf22a56f,
       type: 3}
-    m_Threshold: 1
+    m_Threshold: 0.79012346
     m_Position: {x: -0.7, y: -0.7}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -92,7 +92,7 @@ BlendTree:
   m_BlendParameter: VelocityX
   m_BlendParameterY: VelocityZ
   m_MinThreshold: 0
-  m_MaxThreshold: 1
+  m_MaxThreshold: 0.79012346
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 1

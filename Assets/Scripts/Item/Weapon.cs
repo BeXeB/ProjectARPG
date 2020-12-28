@@ -15,7 +15,7 @@ public class Weapon : Equipable
     {
         if (playerModel == null)
         {
-            playerModel = PlayerManager.instance.player.transform.GetChild(0).transform;
+            playerModel = PlayerManager.instance.player.transform;
         }
     }
 }
