@@ -9,6 +9,11 @@ public class Stat
 
     private List<int> modifiers = new List<int>();
 
+    public void SetBaseValue(int value)
+    {
+        baseValue = value;
+    }
+
     public int GetValue()
     {
         int finalValue = baseValue;
