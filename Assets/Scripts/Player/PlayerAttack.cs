@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 weapon.currentMag = weapon.magSize;
             }
-            weapon.Attack(playerStatsScript.CalcWeaponDmg());
+            weapon.Attack(playerStatsScript.CalcWeaponDmg(weapon.baseDmg));
             if(--weapon.currentMag == 0)
             {
                 reloadCooldown = weapon.reloadSpeed;

@@ -8,6 +8,8 @@ public class Equipment : MonoBehaviour
     public delegate void OnEquipmentChanged(Equipable newItem, Equipable oldItem);
     public OnEquipmentChanged onEquipmentChangedCallback;
 
+    [SerializeField] private Transform weaponParent;
+
     private void Start()
     {
         inventory = GetComponent<Inventory>();
@@ -20,6 +22,15 @@ public class Equipment : MonoBehaviour
         int slotIndex = (int)newItem.equipSlot;
         Equipable oldItem = Unequip(slotIndex);
         currentEquipment[slotIndex] = newItem;
+        if (newItem.equipSlot == EquipmentSlot.Weapon)
+        {
+            if (oldItem != null)
+            {
+                Destroy(weaponParent.GetChild(1).gameObject);
+            }
+            var newObject = Instantiate(((Weapon)newItem).weaponModel, weaponParent.position, weaponParent.rotation, weaponParent);
+            newObject.transform.localScale /= 100;
+        }
         if (onEquipmentChangedCallback != null)
         {
             onEquipmentChangedCallback.Invoke(newItem, oldItem);

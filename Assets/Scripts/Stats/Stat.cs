@@ -4,6 +4,9 @@ using UnityEngine;
 [System.Serializable]
 public class Stat
 {
+    public delegate void OnStatChange();
+    public OnStatChange onStatChangeCallback;
+
     [SerializeField]
     private int baseValue;
 
@@ -12,6 +15,15 @@ public class Stat
     public void SetBaseValue(int value)
     {
         baseValue = value;
+        if (onStatChangeCallback != null)
+        {
+            onStatChangeCallback.Invoke();
+        }
+    }
+
+    public int GetBaseValue()
+    {
+        return baseValue;
     }
 
     public int GetValue()
@@ -26,6 +38,10 @@ public class Stat
         if (modifier != 0)
         {
             modifiers.Add(modifier);
+            if (onStatChangeCallback != null)
+            {
+                onStatChangeCallback.Invoke();
+            }
         }
     }
 

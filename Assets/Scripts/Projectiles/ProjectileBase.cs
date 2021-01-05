@@ -5,15 +5,32 @@ public class ProjectileBase : MonoBehaviour
 
     [SerializeField] protected float speed;
     [SerializeField] protected float damage;
+    [SerializeField] protected float ttl;
+    protected float destroyTime = 0;
+    protected Weapon weaponsShotFrom;
 
     public void SetDamage(float value)
     {
         damage = value;
     }
 
-    private void Update()
+    public void SetWeaponShotFrom(Weapon value)
+    {
+        weaponsShotFrom = value;
+    }
+
+    private void OnEnable()
+    {
+        destroyTime = Time.time + ttl;
+    }
+
+    protected virtual void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
+        if (destroyTime <= Time.time)
+        {
+            weaponsShotFrom.ReturnToPool(this);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -23,6 +40,6 @@ public class ProjectileBase : MonoBehaviour
         {
             stats.TakeDamage(damage);
         }
-        Destroy(this.gameObject);
+        weaponsShotFrom.ReturnToPool(this);
     }
 }

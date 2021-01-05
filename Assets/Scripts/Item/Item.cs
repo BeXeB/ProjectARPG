@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Item : ScriptableObject
+public class Item : MonoBehaviour
 {
     new public string name = "New Item";
     public Sprite icon = null;

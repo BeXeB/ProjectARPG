@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41dc69b4a6d76d469ed2206482866bd, type: 3}
+  m_Name: Test Active Spell
+  m_EditorClassIdentifier: 
+  weaponType: 0
+  baseDamage: 10
+  coolDown: 10
+  levelToUnlock: 1
+  unlocked: 0
+  unlockedIcon: {fileID: 21300000, guid: 9abfd26dcd6fae346801536e04e7575b, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 58b45e45b8714cd4da073203bf34bc18, type: 3}
+  name: Test Active Skill
+  skillEffect: {fileID: 433759966887099401, guid: 4ba643985cd3bff4c811ef52f6db8b62,
+    type: 3}
