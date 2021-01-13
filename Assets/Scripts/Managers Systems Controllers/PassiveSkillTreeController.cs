@@ -41,9 +41,10 @@ public class PassiveSkillTreeController : MonoBehaviour
             {
                 foreach (PassiveSkill pskill in tree.skillTree)
                 {
-                    if (pskill == skill && pskill.points < pskill.maxPoints)
+                    if (pskill == skill && (pskill.points < pskill.maxPoints || pskill.maxPoints == -1))
                     {
                         pskill.points++;
+                        pskill.skillEffect.GetComponent<PassiveSkillEffect>()?.Effect(pskill);
                         tree.pointsSpent++;
                         availableSkillPoints--;
                         if (tree.pointsSpent > tree.tier * tree.pointsPerTier)

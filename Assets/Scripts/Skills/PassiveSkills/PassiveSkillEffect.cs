@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PassiveSkillEffect : MonoBehaviour
 {
-   public virtual void Effect()
+    public virtual void Effect(PassiveSkill skill)
     {
-        print("haha");
+
     }
 }

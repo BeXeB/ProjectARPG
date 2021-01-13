@@ -48,4 +48,4 @@ public class Weapon : Equipable
     }
 }
 
-public enum WeaponType { Pistol/*, SMG, Shotgun, Rifle, Sniper, LMG, Launcher*/ }
+public enum WeaponType { Pistol/*, SMG, Shotgun, Rifle, Sniper, Launcher*/ }

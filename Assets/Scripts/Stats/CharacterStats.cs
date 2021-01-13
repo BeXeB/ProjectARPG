@@ -6,6 +6,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] protected float strengthPotency = 100f; //  how much to double damage
     [SerializeField] protected float inteligencePotency = 100f; // how much to double spell damage
     [SerializeField] protected float vitalityPotency = 10f; // hp / vit
+    [SerializeField] protected float dexterityPotency = 100f; //how much dex to 50% cdr
 
     [SerializeField] protected Stat intelligence;
     [SerializeField] protected Stat strength;
@@ -23,6 +24,11 @@ public class CharacterStats : MonoBehaviour
     {
         currentHealt = baseMaxHealth;
         currentHealt = currentMaxHealth;
+    }
+
+    public Stat getStrength()
+    {
+        return strength;
     }
 
     public void TakeDamage(float incDmg)
@@ -57,7 +63,6 @@ public class CharacterStats : MonoBehaviour
         currentHealt += ammount;
         Mathf.Clamp(currentHealt, 0, currentMaxHealth);
     }
-
     public virtual void Die()
     {
         died = true;

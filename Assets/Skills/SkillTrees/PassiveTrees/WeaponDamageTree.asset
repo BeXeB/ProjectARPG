@@ -18,7 +18,7 @@ MonoBehaviour:
   tier: 1
   pointsSpent: 0
   skillTree:
-  - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
+  - {fileID: 11400000, guid: e8964459419088743a9212f15e15647d, type: 2}
   - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
   - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
   - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}

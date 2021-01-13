@@ -51,5 +51,9 @@ public class Stat
         {
             modifiers.Remove(modifier);
         }
+        if (onStatChangeCallback != null)
+        {
+            onStatChangeCallback.Invoke();
+        }
     }
 }
