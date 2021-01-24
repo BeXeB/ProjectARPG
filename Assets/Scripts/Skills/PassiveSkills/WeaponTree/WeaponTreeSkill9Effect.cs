@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class WeaponTreeSkill9Effect : PassiveSkillEffect
 {
     //execute
@@ -5,6 +7,15 @@ public class WeaponTreeSkill9Effect : PassiveSkillEffect
     float executePercent = 20;
     public override void Effect(PassiveSkill skill)
     {
-        base.Effect(skill);
+        CharacterStats.onDamageTakenCallback += OnDamageTaken;
+    }
+
+    void OnDamageTaken(GameObject gameObject, float currentHealt, float maxHealth)
+    {
+        EnemyStats enemyStats = gameObject.GetComponent<EnemyStats>();
+        if (enemyStats && ((currentHealt/maxHealth) * 100) <= executePercent)
+        {
+            enemyStats.TakeDamage(float.MaxValue / 2);
+        }
     }
 }

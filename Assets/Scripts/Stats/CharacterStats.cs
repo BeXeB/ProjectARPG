@@ -2,6 +2,9 @@
 
 public class CharacterStats : MonoBehaviour
 {
+    public delegate void OnDamageTaken(GameObject go, float currentHealt, float maxHealth);
+    public static OnDamageTaken onDamageTakenCallback;
+
     [SerializeField] protected Stat armorPotency;// how much armor to 50% damage redu
     [SerializeField] protected Stat strengthPotency; //  how much to double damage
     [SerializeField] protected Stat inteligencePotency; // how much to double spell damage
@@ -67,7 +70,9 @@ public class CharacterStats : MonoBehaviour
         float reducedIncDmg = incDmg * (damageReduPercentage.GetValue() / 100);
         reducedIncDmg = reducedIncDmg / (1 + (armor.GetValue() / armorPotency.GetValue()));
         currentHealt -= reducedIncDmg;
-        
+
+        onDamageTakenCallback.Invoke(this.gameObject, currentHealt, maxHealth.GetValue());
+
         if (currentHealt <= 0)
         {
             Die();
