@@ -67,21 +67,28 @@ public class CharacterStats : MonoBehaviour
 
     public void TakeDamage(float incDmg)
     {
-        float reducedIncDmg = incDmg * (damageReduPercentage.GetValue() / 100);
-        reducedIncDmg = reducedIncDmg / (1 + (armor.GetValue() / armorPotency.GetValue()));
-        currentHealt -= reducedIncDmg;
-
-        onDamageTakenCallback.Invoke(this.gameObject, currentHealt, maxHealth.GetValue());
-
-        if (currentHealt <= 0)
+        if (!died)
         {
-            Die();
+
+            print(incDmg);
+            float reducedIncDmg = incDmg * (1 + (damageReduPercentage.GetValue() / 100));
+            reducedIncDmg /= (1 + (armor.GetValue() / armorPotency.GetValue()));
+            print(reducedIncDmg); //0?
+            currentHealt -= reducedIncDmg;
+            print(currentHealt);
+
+            onDamageTakenCallback?.Invoke(this.gameObject, currentHealt, maxHealth.GetValue());
+
+            if (currentHealt <= 0)
+            {
+                Die();
+            }
         }
     }
 
     public float CalcWeaponDmg(float baseWeaponDamage)
     {
-        float dmg = (damage.GetValue() + baseWeaponDamage) * (baseDamageIncreasePrecentage.GetValue() / 100);
+        float dmg = (damage.GetValue() + baseWeaponDamage) * (1 + (baseDamageIncreasePrecentage.GetValue() / 100));
         dmg *= 1 + (strength.GetValue() / strengthPotency.GetValue());
         dmg = CalcCrit(dmg);
         return dmg;
@@ -92,7 +99,7 @@ public class CharacterStats : MonoBehaviour
         float rnd = Random.Range(0f, 100f);
         if (rnd <= critChance.GetValue())
         {
-            damage *= (critDamage.GetValue() / 100);
+            damage *= (1 + (critDamage.GetValue() / 100));
         }
         return damage;
     }
@@ -112,5 +119,13 @@ public class CharacterStats : MonoBehaviour
     public virtual void Die()
     {
         died = true;
+    }
+
+    public void Execute()
+    {
+        if (!died)
+        {
+            Die();
+        }
     }
 }

@@ -19,7 +19,7 @@ public class WeaponTreeSkill2Effect : PassiveSkillEffect
     private void IncreaseBaseDamage(PassiveSkill skill)
     {
         Stat damageIncrease = playerStats.GetDamageIncreasePercentage();
-        damageIncrease.RemoveModifier(percentagePerPoint * skill.points -1);
+        damageIncrease.RemoveModifier(percentagePerPoint * (skill.points - 1));
         damageIncrease.AddModifier(percentagePerPoint * skill.points);
     }
 }

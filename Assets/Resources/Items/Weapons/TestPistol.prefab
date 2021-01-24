@@ -54,12 +54,12 @@ MonoBehaviour:
   dexterityModifier: 10
   weaponModel: {fileID: 7174006200816597543, guid: 04f6375a3e881764a842512ab2076a3f,
     type: 3}
-  damageModifier: 10
-  weaponType: 0
-  baseDmg: 10
-  attackSpeed: 10
-  currentMag: 10
-  magSize: 10
-  reloadSpeed: 2
   projectile: {fileID: 1004878948995032958, guid: f0519ace9dff13f4ebaf1f1f9bb72d96,
     type: 3}
+  damageModifier: 10
+  weaponType: 0
+  baseDmg: 1
+  attackSpeed: 1
+  currentMag: 10
+  magSize: 10
+  reloadSpeed: 10

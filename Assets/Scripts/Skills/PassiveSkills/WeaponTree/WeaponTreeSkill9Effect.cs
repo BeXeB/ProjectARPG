@@ -15,7 +15,7 @@ public class WeaponTreeSkill9Effect : PassiveSkillEffect
         EnemyStats enemyStats = gameObject.GetComponent<EnemyStats>();
         if (enemyStats && ((currentHealt/maxHealth) * 100) <= executePercent)
         {
-            enemyStats.TakeDamage(float.MaxValue / 2);
+            enemyStats.Execute();
         }
     }
 }

@@ -19,7 +19,7 @@ public class WeaponTreeSkill6Effect : PassiveSkillEffect
     private void IncreaseMagSize(PassiveSkill skill)
     {
         Stat magSize = playerAttack.GetMagSize();
-        magSize.RemoveModifier(percentagePerPoint * skill.points - 1);
+        magSize.RemoveModifier(percentagePerPoint * (skill.points - 1));
         magSize.AddModifier(percentagePerPoint * skill.points);
     }
 }

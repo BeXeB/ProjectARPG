@@ -12,11 +12,11 @@ public class PlayerAttack : MonoBehaviour
 
     Weapon weapon;
 
-    Stat attackSpeed;
+    [SerializeField] Stat attackSpeed;
 
-    Stat reloadSpeed;
+    [SerializeField] Stat reloadSpeed;
 
-    Stat magSize;
+    [SerializeField] Stat magSize;
 
     #region getters/setters
 
@@ -46,8 +46,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        attackCooldown -= Time.deltaTime * (1 + (attackSpeed.GetValue() / 100));
-        reloadCooldown -= Time.deltaTime * (1 + (reloadSpeed.GetValue() / 100));
+        attackCooldown -= Time.deltaTime;
+        reloadCooldown -= Time.deltaTime;
     }
     public void Attack()
     {
@@ -62,13 +62,13 @@ public class PlayerAttack : MonoBehaviour
             {
                 Reload();
             }
-            attackCooldown = 1f / weapon.attackSpeed;
+            attackCooldown = (1f / weapon.attackSpeed) / (1 + (attackSpeed.GetValue() / 100));
         }
     }
 
     public void Reload()
     {
-        reloadCooldown = weapon.reloadSpeed;
+        reloadCooldown = weapon.reloadSpeed / (1 + (reloadSpeed.GetValue() / 100));
     }
 
     private void OnEquipmentChanged(Equipable newItem, Equipable oldItem)

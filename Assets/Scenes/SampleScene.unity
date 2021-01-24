@@ -4323,6 +4323,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2302219361890902419, guid: a1437da57a7441e4da52ea1b57130ade,
+        type: 3}
+      propertyPath: availableSkillPoints
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6430137580712168065, guid: a1437da57a7441e4da52ea1b57130ade,
         type: 3}
       propertyPath: m_Name
