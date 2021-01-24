@@ -19,6 +19,6 @@ MonoBehaviour:
   unlocked: 0
   unlockedIcon: {fileID: 21300000, guid: b81594f9c92fa1744a0f4040bec3c78a, type: 3}
   lockedIcon: {fileID: 21300000, guid: 49c9cd8616e23f94188c488b5da9e50a, type: 3}
-  name: Weapon Tree Skil 1
+  name: Weapon Tree Skill 1
   skillEffect: {fileID: 7429053412798027766, guid: 4601c7277aab8aa4da5db6af3789a4c7,
     type: 3}

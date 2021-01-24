@@ -3,10 +3,9 @@
 public class SkillBar : MonoBehaviour
 {
     [SerializeField] private int skillNo = 4;
-    public ActiveSkill[] skills;
-    public float[] coolDowns;
+    public SkillCD[] skills;
     private PlayerStats playerStatsScript;
-    private Equipment equipment;
+    private EquipmentController equipment;
 
 
     public delegate void OnSkillsChanged(ActiveSkill newSkill, ActiveSkill oldSkill);
@@ -14,10 +13,9 @@ public class SkillBar : MonoBehaviour
 
     private void Start()
     {
-        equipment = PlayerManager.instance.player.GetComponent<Equipment>();
+        equipment = PlayerManager.instance.player.GetComponent<EquipmentController>();
         equipment.onEquipmentChangedCallback += OnWeaponChanged;
-        skills = new ActiveSkill[skillNo];
-        coolDowns = new float[skillNo];
+        skills = new SkillCD[skillNo];
         playerStatsScript = GetComponent<PlayerStats>();
     }
 
@@ -27,7 +25,7 @@ public class SkillBar : MonoBehaviour
         {
             for (int i = 0; i < skills.Length; i++)
             {
-                if (skills[i] && skills[i].weaponType != ((Weapon)newEquipment).weaponType)
+                if (skills[i].skill && skills[i].skill.weaponType != ((Weapon)newEquipment).weaponType)
                 {
                     UnequipSkill(i);
                 }
@@ -40,12 +38,12 @@ public class SkillBar : MonoBehaviour
         ActiveSkill oldSkill = UnequipSkill(slot);
         for (int i = 0; i < skills.Length; i++)
         {
-            if (skills[i] == newSkill)
+            if (skills[i].skill == newSkill)
             {
                 UnequipSkill(i);
             }
         }
-        skills[slot] = newSkill;
+        skills[slot].skill = newSkill;
         if (onSkillsChangedCallback != null)
         {
             onSkillsChangedCallback.Invoke(newSkill, oldSkill);
@@ -55,10 +53,10 @@ public class SkillBar : MonoBehaviour
     public ActiveSkill UnequipSkill(int slot)
     {
         ActiveSkill oldSkill = null;
-        if (skills[slot] != null)
+        if (skills[slot].skill != null)
         {
-            oldSkill = skills[slot];
-            skills[slot] = null;
+            oldSkill = skills[slot].skill;
+            skills[slot].skill = null;
         }
         if (onSkillsChangedCallback != null)
         {
@@ -69,24 +67,36 @@ public class SkillBar : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < coolDowns.Length; i++)
+        for (int i = 0; i < skills.Length; i++)
         {
-            coolDowns[i] -= Time.deltaTime;
+            skills[i].cd -= Time.deltaTime;
         }
     }
 
     public void TryUseSkill(int index)
     {
-        if (coolDowns[index] <= 0f && skills[index] != null)
+        if (skills[index].cd <= 0f && skills[index].skill != null)
         {
-            float damage = playerStatsScript.CalcSkillDmg(skills[index].baseDamage);
-            skills[index].skillEffect.GetComponent<ActiveSkillEffect>().Effect(transform, damage);
-            coolDowns[index] = skills[index].coolDown;
+            float damage = playerStatsScript.CalcSkillDmg(skills[index].skill.baseDamage);
+            skills[index].skill.skillEffect.GetComponent<ActiveSkillEffect>().Effect(transform, damage);
+            skills[index].cd = skills[index].skill.coolDown;
         }
     }
 
     public ActiveSkill[] GetSkills()
     {
-        return skills;
+        ActiveSkill[] activeSkills = new ActiveSkill[skills.Length]; 
+        for (int i = 0; i < skills.Length; i++)
+        {
+            activeSkills[i] = skills[i].skill;
+        }
+        return activeSkills;
     }
+}
+
+[System.Serializable]
+public struct SkillCD
+{
+    public ActiveSkill skill;
+    public float cd;
 }

@@ -136,7 +136,7 @@
                     "name": "",
                     "id": "05570286-b6e0-4e09-ae31-6b829a2b98f8",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Dodge",

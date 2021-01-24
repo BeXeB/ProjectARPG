@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class PassiveSkillTreeController : MonoBehaviour
 {
     public delegate void OnPassiveSkillsChanged(PassiveSkillTree passiveSkillTree);
     public OnPassiveSkillsChanged onPassiveSkillsChagedCallback;
-    [SerializeField] PassiveSkillTree[] skillTrees;
     public int availableSkillPoints = 0;
+    [SerializeField] PassiveSkillTree[] skillTrees;
 
     private LevelSystem levelSystem;
 
@@ -24,8 +23,10 @@ public class PassiveSkillTreeController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         foreach (PassiveSkillTree tree in skillTrees)
         {
+            UnlockSkillsInNextTier(tree);
             onPassiveSkillsChagedCallback.Invoke(tree);
         }
+
     }
 
     void OnlevelChanged()
@@ -47,12 +48,13 @@ public class PassiveSkillTreeController : MonoBehaviour
                         pskill.skillEffect.GetComponent<PassiveSkillEffect>()?.Effect(pskill);
                         tree.pointsSpent++;
                         availableSkillPoints--;
-                        if (tree.pointsSpent > tree.tier * tree.pointsPerTier)
+                        if (tree.pointsSpent == tree.tier * tree.pointsPerTier)
                         {
                             tree.tier++;
                             UnlockSkillsInNextTier(tree);
                         }
                         onPassiveSkillsChagedCallback?.Invoke(tree);
+                        return;
                     }
                 }
             }
@@ -66,6 +68,20 @@ public class PassiveSkillTreeController : MonoBehaviour
             if (skill.tier <= tree.tier && !skill.unlocked)
             {
                 skill.unlocked = true;
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (PassiveSkillTree tree in skillTrees)
+        {
+            tree.tier = 1;
+            tree.pointsSpent = 0;
+            foreach (PassiveSkill skill in tree.skillTree)
+            {
+                skill.points = 0;
+                skill.unlocked = false;
             }
         }
     }

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 106908037}
   - component: {fileID: 106908040}
   - component: {fileID: 106908038}
+  - component: {fileID: 106908039}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -154,7 +155,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &106908038
 MonoBehaviour:
@@ -169,6 +170,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueUI: {fileID: 1622280805}
+--- !u!114 &106908039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106908036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7475416427d97fe44a771495b00ad755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &106908040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,23 +201,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6430137580455257098}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &282193548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282193547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6a708274cc3dbf48aee75b00d5b9d93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillTrees:
-  - {fileID: 11400000, guid: 1efa87440a3c25942b3d9cd8d40c84cd, type: 2}
-  - {fileID: 11400000, guid: 6a147226ef8708a458b6f7122e3569f8, type: 2}
-  - {fileID: 11400000, guid: 0579aa03703291a4e88135bb29561d71, type: 2}
-  availableSkillPoints: 0
 --- !u!1 &519218697 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4639090677511248964, guid: 2a96ba2dd7ef6d54d8c3fe3e237b1d64,
@@ -523,7 +519,7 @@ RectTransform:
   - {fileID: 1278479461}
   - {fileID: 519218698}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -924,7 +920,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1316820079 stripped
 RectTransform:
@@ -4327,11 +4323,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3144119947496661037, guid: a1437da57a7441e4da52ea1b57130ade,
-        type: 3}
-      propertyPath: weaponLevels.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6430137580712168065, guid: a1437da57a7441e4da52ea1b57130ade,
         type: 3}
       propertyPath: m_Name

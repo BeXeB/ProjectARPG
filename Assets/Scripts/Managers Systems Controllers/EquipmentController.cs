@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-public class Equipment : MonoBehaviour
+public class EquipmentController : MonoBehaviour
 {
     Equipable[] currentEquipment;
-    Inventory inventory;
+    InventoryController inventory;
 
     public delegate void OnEquipmentChanged(Equipable newItem, Equipable oldItem);
     public OnEquipmentChanged onEquipmentChangedCallback;
@@ -12,7 +12,7 @@ public class Equipment : MonoBehaviour
 
     private void Start()
     {
-        inventory = GetComponent<Inventory>();
+        inventory = GetComponent<InventoryController>();
         int numberOfslots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipable[numberOfslots];
     }
@@ -26,7 +26,7 @@ public class Equipment : MonoBehaviour
         {
             if (oldItem != null)
             {
-                Destroy(weaponParent.GetChild(1).gameObject);
+                Destroy(weaponParent.GetChild(1).gameObject); //Destroy weapon model
             }
             var newObject = Instantiate(((Weapon)newItem).weaponModel, weaponParent.position, weaponParent.rotation, weaponParent);
             newObject.transform.localScale /= 100;

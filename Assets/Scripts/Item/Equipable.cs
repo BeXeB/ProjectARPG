@@ -13,7 +13,7 @@ public class Equipable : Item
     public override void Use()
     {
         base.Use();
-        PlayerManager.instance.player.GetComponent<Equipment>().Equip(this);
+        PlayerManager.instance.player.GetComponent<EquipmentController>().Equip(this);
         RemoveFromInventory();
     }
 }

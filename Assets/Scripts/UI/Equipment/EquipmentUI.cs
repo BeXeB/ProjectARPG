@@ -5,13 +5,13 @@ public class EquipmentUI : MonoBehaviour
 
     [SerializeField] Transform equipmentParent;
 
-    Equipment equipment;
+    EquipmentController equipment;
 
     EquipmentUISlot[] slots;
 
     private void Start()
     {
-        equipment = PlayerManager.instance.player.GetComponent<Equipment>();
+        equipment = PlayerManager.instance.player.GetComponent<EquipmentController>();
         equipment.onEquipmentChangedCallback += UpdateUI;
         slots = equipmentParent.GetComponentsInChildren<EquipmentUISlot>();
     }

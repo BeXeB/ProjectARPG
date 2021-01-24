@@ -5,14 +5,14 @@ public class ActiveSkillTreeController : MonoBehaviour
     public delegate void OnActiveSkillsChanged(ActiveSkillTree newActiveSkillTree);
     public OnActiveSkillsChanged onActiveSkillsChagedCallback;
     [SerializeField] ActiveSkillTree[] skillTrees;
-    Equipment equipment;
+    EquipmentController equipment;
     WeaponLevelSystem weaponLevelSystem;
     public int activeSkillTreeIndex;
 
     private void Start()
     {
         weaponLevelSystem = PlayerManager.instance.player.GetComponent<WeaponLevelSystem>();
-        equipment = PlayerManager.instance.player.GetComponent<Equipment>();
+        equipment = PlayerManager.instance.player.GetComponent<EquipmentController>();
         weaponLevelSystem.onWeaponLevelChangedCallback += OnWeaponLevelChanged;
         equipment.onEquipmentChangedCallback += OnWeaponChanged;
     }
@@ -35,7 +35,7 @@ public class ActiveSkillTreeController : MonoBehaviour
         {
             foreach (ActiveSkill skill in skillTrees[activeSkillTreeIndex].skillTree)
             {
-                if (skill.levelToUnlock <= level)
+                if (skill.levelToUnlock <= level  && !skill.unlocked)
                 {
                     skill.unlocked = true;
                     if (onActiveSkillsChagedCallback != null)

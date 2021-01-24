@@ -18,12 +18,12 @@ MonoBehaviour:
   tier: 1
   pointsSpent: 0
   skillTree:
-  - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
-  - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
-  - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
-  - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
-  - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
-  - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
-  - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
-  - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
-  - {fileID: 11400000, guid: 88e79d05fa4abd44aaa9598c1caf1cd2, type: 2}
+  - {fileID: 11400000, guid: 8bb19e33d83b8154089601f831665bc0, type: 2}
+  - {fileID: 11400000, guid: ab8100d6a6f596a41b24ad760518f05b, type: 2}
+  - {fileID: 11400000, guid: 478a5e554b0f010428d435b09f0c2123, type: 2}
+  - {fileID: 11400000, guid: a61ee21dfefeac3489139aa95dbd76ed, type: 2}
+  - {fileID: 11400000, guid: fa9d89ce5fea96246a8cb174823d18ec, type: 2}
+  - {fileID: 11400000, guid: 41fb0b2147e26374c98733596a5b21c9, type: 2}
+  - {fileID: 11400000, guid: 1c4baee2ab8339848bb95b78672cc4fc, type: 2}
+  - {fileID: 11400000, guid: caf2b5437c6b7d845b4a4bb99f25a73b, type: 2}
+  - {fileID: 11400000, guid: bbcafeaed8f53ee448fa7be353f1222d, type: 2}

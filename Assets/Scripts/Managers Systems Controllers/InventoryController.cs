@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class InventoryController : MonoBehaviour
 {
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;

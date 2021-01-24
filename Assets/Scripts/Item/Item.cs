@@ -9,6 +9,6 @@ public class Item : MonoBehaviour
 
     public void RemoveFromInventory()
     {
-        PlayerManager.instance.player.GetComponent<Inventory>().RemoveItem(this);
+        PlayerManager.instance.player.GetComponent<InventoryController>().RemoveItem(this);
     }
 }

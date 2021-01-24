@@ -1,5 +1,4 @@
-﻿using System;
-public class PlayerStats : CharacterStats
+﻿public class PlayerStats : CharacterStats
 {
     private LevelSystem levelSystem;
     public float healthGrowthMultiplyer = 1.5f;
@@ -14,20 +13,21 @@ public class PlayerStats : CharacterStats
     {
         levelSystem = PlayerManager.instance.player.GetComponent<LevelSystem>();
         levelSystem.onLevelChangedCallback += OnLevelUp;
-        PlayerManager.instance.player.GetComponent<Equipment>().onEquipmentChangedCallback += OnEquipmentChanged;
-        vitality.onStatChangeCallback += OnVitalityChage;
+        PlayerManager.instance.player.GetComponent<EquipmentController>().onEquipmentChangedCallback += OnEquipmentChanged;
     }
 
     void OnLevelUp()
     {
         //grow stats and hp
-        baseMaxHealth *= healthGrowthMultiplyer;
+        maxHealth.SetBaseValue(maxHealth.GetBaseValue() * healthGrowthMultiplyer);
+        maxHealth.RemoveModifier(vitality.GetValue() * vitalityPotency.GetValue());
         intelligence.SetBaseValue(intelligence.GetBaseValue() + inteligenceGrowth);
         strength.SetBaseValue(strength.GetBaseValue() + strengthGrowth);
         vitality.SetBaseValue(vitality.GetBaseValue() + vitalityGrowth);
         dexterity.SetBaseValue(dexterity.GetBaseValue() + dexterityGrowth);
         armor.SetBaseValue(armor.GetBaseValue() + armorGrowth);
         damage.SetBaseValue(damage.GetBaseValue() + damageGrowth);
+        maxHealth.AddModifier(vitality.GetValue() * vitalityPotency.GetValue());
     }
 
     void OnEquipmentChanged(Equipable newItem, Equipable oldItem)
@@ -63,10 +63,5 @@ public class PlayerStats : CharacterStats
                 armor.RemoveModifier(((Armor)oldItem).armorModifier);
             }
         }
-    }
-
-    void OnVitalityChage()
-    {
-        currentMaxHealth = baseMaxHealth + (vitality.GetValue() * vitalityPotency);
     }
 }

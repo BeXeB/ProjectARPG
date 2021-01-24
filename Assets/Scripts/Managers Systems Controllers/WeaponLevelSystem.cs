@@ -23,21 +23,25 @@ public class WeaponLevelSystem : MonoBehaviour
 
     void OnExperienceGained(int ammount)
     {
-        WeaponType weaponType = ((Weapon)PlayerManager.instance.player.GetComponent<Equipment>().GetEquipment()[8]).weaponType;
+        WeaponType weaponType = ((Weapon)PlayerManager.instance.player
+            .GetComponent<EquipmentController>().GetEquipment()[8]).weaponType;
         AddExperience(ammount, weaponType);
     }
 
     public void AddExperience(int ammount, WeaponType weaponType)
     {
-        weaponLevels[(int)weaponType].experience += ammount;
-        if (weaponLevels[(int)weaponType].experience >= weaponLevels[(int)weaponType].experienceToNextLevel)
+        int index = (int)weaponType;
+        weaponLevels[index].experience += ammount;
+        if (weaponLevels[index].experience >= weaponLevels[index].experienceToNextLevel)
         {
-            weaponLevels[(int)weaponType].level++;
-            weaponLevels[(int)weaponType].experience -= weaponLevels[(int)weaponType].experienceToNextLevel;
-            weaponLevels[(int)weaponType].experienceToNextLevel = Mathf.FloorToInt(weaponLevels[(int)weaponType].experienceToNextLevel * weaponLevels[(int)weaponType].experienceToNextLevelMultiplyer);
+            weaponLevels[index].level++;
+            weaponLevels[index].experience -= weaponLevels[index].experienceToNextLevel;
+            weaponLevels[index].experienceToNextLevel = 
+            Mathf.FloorToInt(weaponLevels[index].experienceToNextLevel
+                * weaponLevels[index].experienceToNextLevelMultiplyer);
             if (onWeaponLevelChangedCallback != null)
             {
-                onWeaponLevelChangedCallback.Invoke(weaponType, weaponLevels[(int)weaponType].level);
+                onWeaponLevelChangedCallback.Invoke(weaponType, weaponLevels[index].level);
             }
         }
     }

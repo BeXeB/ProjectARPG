@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9df12e6f68737c468deee25d82f7758, type: 3}
-  m_Name: Test Passive Spell
+  m_Name: Spell Tree Skill 7
   m_EditorClassIdentifier: 
   coolDown: 0
   points: 0
   maxPoints: 5
-  tier: 1
+  tier: 4
   unlocked: 0
-  unlockedIcon: {fileID: 21300000, guid: 9abfd26dcd6fae346801536e04e7575b, type: 3}
-  lockedIcon: {fileID: 21300000, guid: 58b45e45b8714cd4da073203bf34bc18, type: 3}
-  name: Test Passive
-  skillEffect: {fileID: 0}
+  unlockedIcon: {fileID: 21300000, guid: 192a70432605dbb45a145b02794357b1, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 0c9d986ddf1eb6f46b78932aacab4b79, type: 3}
+  name: Spell Tree Skill 7
+  skillEffect: {fileID: 7924048342871410702, guid: 77b7af7941df502449bfead7b3764ced,
+    type: 3}

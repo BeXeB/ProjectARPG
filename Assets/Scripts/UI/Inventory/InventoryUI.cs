@@ -3,12 +3,12 @@
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] Transform itemsParent;
-    Inventory inventory;
+    InventoryController inventory;
     InventoryUISlot[] slots;
 
     private void Start()
     {
-        inventory = PlayerManager.instance.player.GetComponent<Inventory>();
+        inventory = PlayerManager.instance.player.GetComponent<InventoryController>();
         inventory.onItemChangedCallback += UpdateUI;
         slots = itemsParent.GetComponentsInChildren<InventoryUISlot>();
     }

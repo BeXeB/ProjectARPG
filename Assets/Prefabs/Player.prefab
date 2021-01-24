@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 3144119947496661037}
   - component: {fileID: 4188197443473406676}
   - component: {fileID: 3196373931834986858}
+  - component: {fileID: 2302219361890902419}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -577,10 +578,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3071a523238ea35458a8953214f571fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armorPotency: 100
-  strengthPotency: 100
-  inteligencePotency: 100
-  vitalityPotency: 10
+  armorPotency:
+    baseValue: 100
+  strengthPotency:
+    baseValue: 100
+  inteligencePotency:
+    baseValue: 100
+  vitalityPotency:
+    baseValue: 10
+  dexterityPotency:
+    baseValue: 100
+  moveSpeed:
+    baseValue: 10
+  maxHealth:
+    baseValue: 100
   intelligence:
     baseValue: 5
   strength:
@@ -593,6 +604,14 @@ MonoBehaviour:
     baseValue: 5
   damage:
     baseValue: 5
+  baseDamageIncreasePrecentage:
+    baseValue: 0
+  damageReduPercentage:
+    baseValue: 0
+  critChance:
+    baseValue: 0
+  critDamage:
+    baseValue: 0
   healthGrowthMultiplyer: 1.5
   inteligenceGrowth: 1
   strengthGrowth: 1
@@ -678,6 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   experienceToNextLevel: 2000
   experienceToNextLevelMultiplyer: 2.5
+  weaponLevels: []
 --- !u!114 &4188197443473406676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,7 +712,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillNo: 4
   skills: []
-  coolDowns: []
 --- !u!114 &3196373931834986858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +727,23 @@ MonoBehaviour:
   skillTrees:
   - {fileID: 11400000, guid: 67ee4b91dabbcec4ba67b1d28439726f, type: 2}
   activeSkillTreeIndex: -1
+--- !u!114 &2302219361890902419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6430137580712168065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a708274cc3dbf48aee75b00d5b9d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableSkillPoints: 5
+  skillTrees:
+  - {fileID: 11400000, guid: 1efa87440a3c25942b3d9cd8d40c84cd, type: 2}
+  - {fileID: 11400000, guid: 6a147226ef8708a458b6f7122e3569f8, type: 2}
+  - {fileID: 11400000, guid: 0579aa03703291a4e88135bb29561d71, type: 2}
 --- !u!1 &6430137581651488997
 GameObject:
   m_ObjectHideFlags: 0

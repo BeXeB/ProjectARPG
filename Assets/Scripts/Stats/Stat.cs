@@ -7,12 +7,11 @@ public class Stat
     public delegate void OnStatChange();
     public OnStatChange onStatChangeCallback;
 
-    [SerializeField]
-    private int baseValue;
+    [SerializeField] private float baseValue;
 
-    private List<int> modifiers = new List<int>();
+    private List<float> modifiers = new List<float>();
 
-    public void SetBaseValue(int value)
+    public void SetBaseValue(float value)
     {
         baseValue = value;
         if (onStatChangeCallback != null)
@@ -21,19 +20,19 @@ public class Stat
         }
     }
 
-    public int GetBaseValue()
+    public float GetBaseValue()
     {
         return baseValue;
     }
 
-    public int GetValue()
+    public float GetValue()
     {
-        int finalValue = baseValue;
+        float finalValue = baseValue;
         modifiers.ForEach(x => finalValue += x);
         return finalValue;
     }
 
-    public void AddModifier(int modifier)
+    public void AddModifier(float modifier)
     {
         if (modifier != 0)
         {
@@ -45,7 +44,7 @@ public class Stat
         }
     }
 
-    public void RemoveModifier(int modifier)
+    public void RemoveModifier(float modifier)
     {
         if (modifier != 0)
         {

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed = 10f;
+    private PlayerStats playerStats;
+    [SerializeField] private float movementSpeed;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float jumpSpeed = 0.5f;
     [SerializeField] private float jumpControll = 0.5f;
@@ -54,9 +55,11 @@ public class Movement : MonoBehaviour
     {
         mask = LayerMask.GetMask("Ground");
         groundCheck = PlayerManager.instance.player.transform.GetChild(1).transform;
+        playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+        movementSpeed = playerStats.GetMovementSpeed().GetValue();
     }
 
-    public void FixedUpdate()
+    private void Update()
     {
         if (!isGrounded)
         {
@@ -67,10 +70,14 @@ public class Movement : MonoBehaviour
             }
         }
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, mask);
+    }
+
+    private void FixedUpdate()
+    {
         if (!isJumping && !isDodging)
         {
             transform.position +=
-                (UnityEngine.Vector3.forward * moveDir.y + Vector3.right * moveDir.x) *
+                (Vector3.forward * moveDir.y + Vector3.right * moveDir.x) *
                 Time.fixedDeltaTime * movementSpeed;
         }
         else if (isJumping)

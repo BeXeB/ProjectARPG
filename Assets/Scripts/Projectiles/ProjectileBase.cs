@@ -26,14 +26,18 @@ public class ProjectileBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
         if (destroyTime <= Time.time)
         {
             weaponsShotFrom.ReturnToPool(this);
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    protected virtual void FixedUpdate()
+    {
+        transform.position += transform.forward * speed * Time.fixedDeltaTime;
+    }
+
+    protected virtual void OnCollisionEnter(Collision other)
     {
         CharacterStats stats = other.gameObject.GetComponent<CharacterStats>();
         if (stats)

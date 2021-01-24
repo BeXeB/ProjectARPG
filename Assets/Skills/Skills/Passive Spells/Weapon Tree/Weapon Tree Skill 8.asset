@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9df12e6f68737c468deee25d82f7758, type: 3}
+  m_Name: Weapon Tree Skill 8
+  m_EditorClassIdentifier: 
+  coolDown: 0
+  points: 0
+  maxPoints: 1
+  tier: 4
+  unlocked: 0
+  unlockedIcon: {fileID: 21300000, guid: d076fff9a7ec7f94aa0a6f736ca87f08, type: 3}
+  lockedIcon: {fileID: 21300000, guid: 5fe7558ac798f5b4184edece4560fc91, type: 3}
+  name: Weapon Tree Skill 8
+  skillEffect: {fileID: 8222873076310197399, guid: 6191cae2d481abd4ca7b89ffa3553148,
+    type: 3}

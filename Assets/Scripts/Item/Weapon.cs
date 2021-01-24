@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Weapon : Equipable
 {
     protected Transform playerModel;
-    private Queue<ProjectileBase> pool = new Queue<ProjectileBase>();
+
     public GameObject weaponModel;
     public GameObject projectile;
     public int damageModifier = 0;
@@ -22,7 +22,9 @@ public class Weapon : Equipable
         }
     }
 
-    protected ProjectileBase Get()
+    private Queue<ProjectileBase> pool = new Queue<ProjectileBase>();
+
+    protected ProjectileBase GetProjectile()
     {
         if (pool.Count == 0)
         {

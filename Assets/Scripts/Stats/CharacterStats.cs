@@ -2,42 +2,72 @@
 
 public class CharacterStats : MonoBehaviour
 {
-    [SerializeField] protected float armorPotency = 100f; // how much armor to 50% damage redu
-    [SerializeField] protected float strengthPotency = 100f; //  how much to double damage
-    [SerializeField] protected float inteligencePotency = 100f; // how much to double spell damage
-    [SerializeField] protected float vitalityPotency = 10f; // hp / vit
-    [SerializeField] protected float dexterityPotency = 100f; //how much dex to 50% cdr
-
+    [SerializeField] protected Stat armorPotency;// how much armor to 50% damage redu
+    [SerializeField] protected Stat strengthPotency; //  how much to double damage
+    [SerializeField] protected Stat inteligencePotency; // how much to double spell damage
+    [SerializeField] protected Stat vitalityPotency; // hp / vit
+    [SerializeField] protected Stat dexterityPotency; //how much dex to 50% cdr
+    [SerializeField] protected Stat moveSpeed;
+    [SerializeField] protected Stat maxHealth;
     [SerializeField] protected Stat intelligence;
     [SerializeField] protected Stat strength;
     [SerializeField] protected Stat vitality;
     [SerializeField] protected Stat dexterity;
     [SerializeField] protected Stat armor;
     [SerializeField] protected Stat damage;
-    protected bool died = false;
+    [SerializeField] protected Stat baseDamageIncreasePrecentage;
+    [SerializeField] protected Stat damageReduPercentage;
+    [SerializeField] protected Stat critChance;
+    [SerializeField] protected Stat critDamage;
 
-    protected float currentMaxHealth = 0;
-    protected float baseMaxHealth = 100;
+    protected bool died = false;
     protected float currentHealt { get; private set; }
 
-    private void Awake()
+    #region getters/setters
+
+    public Stat GetStrPot()
     {
-        currentHealt = baseMaxHealth;
-        currentHealt = currentMaxHealth;
+        return strengthPotency;
     }
 
-    public Stat getStrength()
+    public Stat GetStrength()
     {
         return strength;
     }
 
+    public Stat GetMovementSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public Stat GetDamageIncreasePercentage()
+    {
+        return baseDamageIncreasePrecentage;
+    }
+
+    public Stat GetCritChance()
+    {
+        return critChance;
+    }
+
+    public Stat GetCritDamage()
+    {
+        return critDamage;
+    }
+
+    #endregion
+
+    private void Awake()
+    {
+        currentHealt = maxHealth.GetValue();
+    }
+
     public void TakeDamage(float incDmg)
     {
-        //reduce dmg with armor
-        //NewDmg = Dmg/(1+(Armor/100))
-        float reducedIncDmg = incDmg / (1 + (armor.GetValue() / armorPotency));
+        float reducedIncDmg = incDmg * (damageReduPercentage.GetValue() / 100);
+        reducedIncDmg = reducedIncDmg / (1 + (armor.GetValue() / armorPotency.GetValue()));
         currentHealt -= reducedIncDmg;
-
+        
         if (currentHealt <= 0)
         {
             Die();
@@ -46,22 +76,33 @@ public class CharacterStats : MonoBehaviour
 
     public float CalcWeaponDmg(float baseWeaponDamage)
     {
-        float dmg = damage.GetValue() + baseWeaponDamage;
-        dmg *= 1 + (strength.GetValue() / strengthPotency);
+        float dmg = (damage.GetValue() + baseWeaponDamage) * (baseDamageIncreasePrecentage.GetValue() / 100);
+        dmg *= 1 + (strength.GetValue() / strengthPotency.GetValue());
+        dmg = CalcCrit(dmg);
         return dmg;
+    }
+
+    private float CalcCrit(float damage)
+    {
+        float rnd = Random.Range(0f, 100f);
+        if (rnd <= critChance.GetValue())
+        {
+            damage *= (critDamage.GetValue() / 100);
+        }
+        return damage;
     }
 
     public float CalcSkillDmg(float baseSpellDamage)
     {
         float dmg = damage.GetValue() + baseSpellDamage;
-        dmg *= 1 + (intelligence.GetValue() / inteligencePotency);
+        dmg *= 1 + (intelligence.GetValue() / inteligencePotency.GetValue());
         return dmg;
     }
 
     public void Heal(float ammount)
     {
         currentHealt += ammount;
-        Mathf.Clamp(currentHealt, 0, currentMaxHealth);
+        Mathf.Clamp(currentHealt, 0f, maxHealth.GetValue());
     }
     public virtual void Die()
     {
