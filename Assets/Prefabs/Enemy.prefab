@@ -149,7 +149,7 @@ MonoBehaviour:
     baseValue: 0
   critDamage:
     baseValue: 0
-  experience: 100
+  experience: 500
 --- !u!114 &7373270460949603803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +162,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccf40bd17a5fec4bbfe2d82a67d2117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropTable: []
+  dropTable:
+  - drop: {fileID: 1219685629632423118, guid: cb14efcc4e9d66d4a9b267959abe5784, type: 3}
+    dropChance: 50
+  - drop: {fileID: 5337034082211802423, guid: 007f0a6261b8a164dbb61b57de3d5dca, type: 3}
+    dropChance: 50
 --- !u!114 &4779181715611282304
 MonoBehaviour:
   m_ObjectHideFlags: 0

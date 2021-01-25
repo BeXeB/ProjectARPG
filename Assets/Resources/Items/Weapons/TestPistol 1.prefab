@@ -62,4 +62,4 @@ MonoBehaviour:
   attackSpeed: 10
   currentMag: 10
   magSize: 8
-  reloadSpeed: 10
+  reloadSpeed: 4

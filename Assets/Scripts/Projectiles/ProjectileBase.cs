@@ -28,7 +28,7 @@ public class ProjectileBase : MonoBehaviour
     {
         if (destroyTime <= Time.time)
         {
-            weaponsShotFrom.ReturnToPool(this);
+            weaponsShotFrom?.ReturnToPool(this);
         }
     }
 
@@ -44,6 +44,6 @@ public class ProjectileBase : MonoBehaviour
         {
             stats.TakeDamage(damage);
         }
-        weaponsShotFrom.ReturnToPool(this);
+        weaponsShotFrom?.ReturnToPool(this);
     }
 }

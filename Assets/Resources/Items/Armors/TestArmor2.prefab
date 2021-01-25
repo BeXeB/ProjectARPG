@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5077424008638728081
+--- !u!1 &6622450446388122833
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5077424008638728080}
-  - component: {fileID: 5077424008638728083}
+  - component: {fileID: 6622450446388122834}
+  - component: {fileID: 6622450446388122835}
   m_Layer: 0
-  m_Name: TestPistol
+  m_Name: TestArmor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5077424008638728080
+--- !u!4 &6622450446388122834
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5077424008638728081}
+  m_GameObject: {fileID: 6622450446388122833}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,35 +31,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5077424008638728083
+--- !u!114 &6622450446388122835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5077424008638728081}
+  m_GameObject: {fileID: 6622450446388122833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6563847c3d85fa34d97885c9c13b4d3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 70e25c7a7fa4a3f47928e46d0609473f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: new pistol
+  name: New Item
   icon: {fileID: 21300000, guid: 58b45e45b8714cd4da073203bf34bc18, type: 3}
   isDefaultItem: 0
-  equipSlot: 8
-  level: 10
+  equipSlot: 1
+  level: 1
   intelligenceModifier: 10
   strengthModifier: 10
   vitalityModifier: 10
   dexterityModifier: 10
-  weaponModel: {fileID: 7174006200816597543, guid: 04f6375a3e881764a842512ab2076a3f,
-    type: 3}
-  projectile: {fileID: 1004878948995032958, guid: f0519ace9dff13f4ebaf1f1f9bb72d96,
-    type: 3}
-  damageModifier: 10
-  weaponType: 0
-  baseDmg: 1
-  attackSpeed: 3
-  currentMag: 10
-  magSize: 10
-  reloadSpeed: 1
+  armorModifier: 10
+  baseArmor: 10

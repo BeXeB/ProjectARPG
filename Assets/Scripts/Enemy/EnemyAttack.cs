@@ -6,6 +6,7 @@ public class EnemyAttack : MonoBehaviour
     public float damage = 10f;
     private float attackCooldown = 0f;
     public float attackSpeed = 3f;
+    
     private void Update()
     {
         attackCooldown -= Time.deltaTime;

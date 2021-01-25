@@ -631,6 +631,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ce201f420329e44942f4708cc88035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSpeed:
+    baseValue: 0
+  reloadSpeed:
+    baseValue: 0
+  magSize:
+    baseValue: 0
 --- !u!114 &282193548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a708274cc3dbf48aee75b00d5b9d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableSkillPoints: 5
+  availableSkillPoints: 0
   skillTrees:
   - {fileID: 11400000, guid: 1efa87440a3c25942b3d9cd8d40c84cd, type: 2}
   - {fileID: 11400000, guid: 6a147226ef8708a458b6f7122e3569f8, type: 2}
