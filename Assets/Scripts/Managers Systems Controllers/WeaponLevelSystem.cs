@@ -3,12 +3,30 @@
 
 public class WeaponLevelSystem : MonoBehaviour
 {
+    public delegate void OnWeaponExperienceChanged(WeaponType type, int currentExperience);
+    public OnWeaponExperienceChanged onWeaponExperienceChangedCallback;
+    public delegate void OnWeaponLevelChanged(WeaponType weaponType, int level);
+    public OnWeaponLevelChanged onWeaponLevelChangedCallback;
     public int experienceToNextLevel = 1000;
     public float experienceToNextLevelMultiplyer = 2.5f;
-    public delegate void OnWeapinLevelChanged(WeaponType weaponType, int level);
-    public OnWeapinLevelChanged onWeaponLevelChangedCallback;
     public WeaponLevel[] weaponLevels;
     private LevelSystem levelSystem;
+
+    public int GetExperienceToNextLevel(WeaponType weaponType)
+    {
+        return weaponLevels[(int)weaponType].experienceToNextLevel;
+    }
+
+    public int GetExperience(WeaponType weaponType)
+    {
+        return weaponLevels[(int)weaponType].experience;
+    }
+
+    public int GetLevel(WeaponType weaponType)
+    {
+        return weaponLevels[(int)weaponType].level;
+    }
+
     private void Start()
     {
         levelSystem = PlayerManager.instance.player.GetComponent<LevelSystem>();
@@ -17,11 +35,11 @@ public class WeaponLevelSystem : MonoBehaviour
         for (int i = 0; i < System.Enum.GetNames(typeof(WeaponType)).Length; i++)
         {
             weaponLevels[i].experienceToNextLevel = experienceToNextLevel;
-            weaponLevels[i].experienceToNextLevelMultiplyer = experienceToNextLevelMultiplyer;
+            weaponLevels[i].level = 1;
         }
     }
 
-    void OnExperienceGained(int ammount)
+    void OnExperienceGained(int ammount, int currentExperience)
     {
         WeaponType weaponType = ((Weapon)PlayerManager.instance.player
             .GetComponent<EquipmentController>().GetEquipment()[8]).weaponType;
@@ -36,14 +54,15 @@ public class WeaponLevelSystem : MonoBehaviour
         {
             weaponLevels[index].level++;
             weaponLevels[index].experience -= weaponLevels[index].experienceToNextLevel;
-            weaponLevels[index].experienceToNextLevel = 
+            weaponLevels[index].experienceToNextLevel =
             Mathf.FloorToInt(weaponLevels[index].experienceToNextLevel
-                * weaponLevels[index].experienceToNextLevelMultiplyer);
+                * experienceToNextLevelMultiplyer);
             if (onWeaponLevelChangedCallback != null)
             {
                 onWeaponLevelChangedCallback.Invoke(weaponType, weaponLevels[index].level);
             }
         }
+        onWeaponExperienceChangedCallback?.Invoke(weaponType, weaponLevels[index].experience);
     }
 }
 
@@ -53,5 +72,4 @@ public struct WeaponLevel
     public int level;
     public int experience;
     public int experienceToNextLevel;
-    public float experienceToNextLevelMultiplyer;
 }

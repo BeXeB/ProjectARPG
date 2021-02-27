@@ -1,7 +1,7 @@
 public class WeaponTreeSkill5Effect : PassiveSkillEffect
 {
     //stength potency
-    float percentagePerPoint = 10;
+    float perPoint = 10;
 
     private PlayerStats playerStats;
     public override void Effect(PassiveSkill skill)
@@ -20,7 +20,7 @@ public class WeaponTreeSkill5Effect : PassiveSkillEffect
     private void IncreaseStrengthPotency(PassiveSkill skill)
     {
         Stat strPot = playerStats.GetStrPot();
-        strPot.RemoveModifier(percentagePerPoint * (skill.points - 1));
-        strPot.AddModifier(percentagePerPoint * skill.points);
+        strPot.RemoveModifier(-(perPoint * (skill.points - 1)));
+        strPot.AddModifier(-(perPoint * skill.points));
     }
 }

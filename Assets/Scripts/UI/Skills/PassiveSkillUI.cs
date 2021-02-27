@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PassiveSkillUI : MonoBehaviour
 {
     [SerializeField] Transform passiveSkillsParent;
+    [SerializeField] TMP_Text skillPoints;
     PassiveSkillTreeController passiveSkillTreeController;
     List<PassiveSkillUISlot[]> slots = new List<PassiveSkillUISlot[]>();
 
@@ -14,6 +16,8 @@ public class PassiveSkillUI : MonoBehaviour
         slots.Add(passiveSkillsParent.GetChild(2).GetComponentsInChildren<PassiveSkillUISlot>());
         passiveSkillTreeController = PlayerManager.instance.player.GetComponent<PassiveSkillTreeController>();
         passiveSkillTreeController.onPassiveSkillsChagedCallback += UpdateUI;
+        passiveSkillTreeController.onSkillPointsChangedCallback += UpdateSkillpoints;
+        skillPoints.text = passiveSkillTreeController.availableSkillPoints.ToString();
     }
 
     void UpdateUI(PassiveSkillTree newSkillTree)
@@ -29,5 +33,10 @@ public class PassiveSkillUI : MonoBehaviour
                 slots[newSkillTree.treeIndex][i].CleatSlot();
             }
         }
+    }
+
+    void UpdateSkillpoints(int availableSkillPoints)
+    {
+        skillPoints.text = availableSkillPoints.ToString();
     }
 }

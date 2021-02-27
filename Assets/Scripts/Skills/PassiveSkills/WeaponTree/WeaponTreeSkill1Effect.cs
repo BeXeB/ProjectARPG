@@ -2,6 +2,7 @@ public class WeaponTreeSkill1Effect : PassiveSkillEffect
 {
     //add strength
     private PlayerStats playerStats;
+    float perPoint = 1;
     public override void Effect(PassiveSkill skill)
     {
         if (playerStats)
@@ -18,7 +19,7 @@ public class WeaponTreeSkill1Effect : PassiveSkillEffect
     private void IncreaseStrength(PassiveSkill skill)
     {
         Stat stat = playerStats.GetStrength();
-        stat.RemoveModifier(skill.points - 1);
-        stat.AddModifier(skill.points);
+        stat.RemoveModifier((skill.points - 1) * perPoint);
+        stat.AddModifier(skill.points * perPoint);
     }
 }

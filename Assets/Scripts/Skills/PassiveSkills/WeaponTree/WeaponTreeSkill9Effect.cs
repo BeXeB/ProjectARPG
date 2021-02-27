@@ -7,7 +7,7 @@ public class WeaponTreeSkill9Effect : PassiveSkillEffect
     float executePercent = 20;
     public override void Effect(PassiveSkill skill)
     {
-        CharacterStats.onDamageTakenCallback += OnDamageTaken;
+        CharacterStats.onHelathChangedCallback += OnDamageTaken;
     }
 
     void OnDamageTaken(GameObject gameObject, float currentHealt, float maxHealth)

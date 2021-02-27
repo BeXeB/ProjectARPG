@@ -3,38 +3,47 @@ using UnityEngine;
 
 public class LevelSystem : MonoBehaviour
 {
-    public delegate void OnExperienceChaged(int ammount);
+    public delegate void OnExperienceChaged(int ammount, int currentExperience);
     public OnExperienceChaged onExperienceChagedCallback;
     public delegate void OnLevelChanged();
     public OnLevelChanged onLevelChangedCallback;
 
-    private int level = 0;
+    private int level = 1;
     private int experience = 0;
-    [SerializeField] private int experienceTioNextLevel = 1000;
+    [SerializeField] private int experienceToNextLevel = 1000;
     [SerializeField] private float experienceToNextLevelMultiplyer = 1.5f;
 
+    public int GetExperienceToNextLevel()
+    {
+        return experienceToNextLevel;
+    }
+
+    public int GetExperience()
+    {
+        return experience;
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
 
     public void AddExperience(int ammount)
     {
         experience += ammount;
-        if (experience >= experienceTioNextLevel)
+        if (experience >= experienceToNextLevel)
         {
             level++;
-            experience -= experienceTioNextLevel;
-            experienceTioNextLevel = Mathf.FloorToInt(experienceTioNextLevel * experienceToNextLevelMultiplyer);
-            if (onLevelChangedCallback != null) 
+            experience -= experienceToNextLevel;
+            experienceToNextLevel = Mathf.FloorToInt(experienceToNextLevel * experienceToNextLevelMultiplyer);
+            if (onLevelChangedCallback != null)
             {
                 onLevelChangedCallback.Invoke();
             }
         }
         if (onExperienceChagedCallback != null)
         {
-            onExperienceChagedCallback.Invoke(ammount);
+            onExperienceChagedCallback.Invoke(ammount, experience);
         }
-    }
-
-    public int GetLevel()
-    {
-        return level;
     }
 }

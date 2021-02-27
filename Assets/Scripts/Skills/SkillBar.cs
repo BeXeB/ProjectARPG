@@ -5,6 +5,7 @@ public class SkillBar : MonoBehaviour
     [SerializeField] private int skillNo = 4;
     public SkillCD[] skills;
     private PlayerStats playerStatsScript;
+    [SerializeField] private Stat durationBonus;
     private EquipmentController equipment;
 
 
@@ -17,6 +18,11 @@ public class SkillBar : MonoBehaviour
         equipment.onEquipmentChangedCallback += OnWeaponChanged;
         skills = new SkillCD[skillNo];
         playerStatsScript = GetComponent<PlayerStats>();
+    }
+
+    public Stat GetDurationBonus()
+    {
+        return durationBonus;
     }
 
     public void OnWeaponChanged(Equipable newEquipment, Equipable oldEquipment)
@@ -78,7 +84,7 @@ public class SkillBar : MonoBehaviour
         if (skills[index].cd <= 0f && skills[index].skill != null)
         {
             float damage = playerStatsScript.CalcSkillDmg(skills[index].skill.baseDamage);
-            skills[index].skill.skillEffect.GetComponent<ActiveSkillEffect>().Effect(transform, damage);
+            skills[index].skill.skillEffect.GetComponent<ActiveSkillEffect>().Effect(skills[index].skill, transform, damage, durationBonus.GetValue());
             skills[index].cd = skills[index].skill.coolDown;
         }
     }

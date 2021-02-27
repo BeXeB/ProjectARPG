@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankTreeSkill7Effect : MonoBehaviour
+public class TankTreeSkill7Effect : PassiveSkillEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    //better armor    
+    float perPoint = 10;
+
+    private PlayerStats playerStats;
+    public override void Effect(PassiveSkill skill)
     {
-        
+        if (playerStats)
+        {
+            IncreaseArmorPotency(skill);
+        }
+        else
+        {
+            playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+            IncreaseArmorPotency(skill);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void IncreaseArmorPotency(PassiveSkill skill)
     {
-        
+        Stat strPot = playerStats.GetArmorPot();
+        strPot.RemoveModifier(-(perPoint * (skill.points - 1)));
+        strPot.AddModifier(-(perPoint * skill.points));
     }
 }

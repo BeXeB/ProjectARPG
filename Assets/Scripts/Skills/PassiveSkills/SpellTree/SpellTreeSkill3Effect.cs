@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellTreeSkill3Effect : MonoBehaviour
+public class SpellTreeSkill3Effect : PassiveSkillEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    //10% spelldamage 
+    private PlayerStats playerStats;
+    float percentagePerPoint = 10;
+    public override void Effect(PassiveSkill skill)
     {
-        
+        if (playerStats)
+        {
+            IncreaseBaseSpellDamage(skill);
+        }
+        else
+        {
+            playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+            IncreaseBaseSpellDamage(skill);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void IncreaseBaseSpellDamage(PassiveSkill skill)
     {
-        
+        Stat stat = playerStats.GetSpellDamagePercentage();
+        stat.RemoveModifier((skill.points - 1) * percentagePerPoint);
+        stat.AddModifier(skill.points * percentagePerPoint);
     }
 }

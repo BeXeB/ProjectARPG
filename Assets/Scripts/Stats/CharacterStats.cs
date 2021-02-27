@@ -2,8 +2,10 @@
 
 public class CharacterStats : MonoBehaviour
 {
-    public delegate void OnDamageTaken(GameObject go, float currentHealt, float maxHealth);
-    public static OnDamageTaken onDamageTakenCallback;
+    public delegate void OnHealthChanged(GameObject go, float currentHealt, float maxHealth);
+    public static OnHealthChanged onHelathChangedCallback;
+    public delegate void OnDied(GameObject go);
+    public static OnDied onDiedCallback;
 
     [SerializeField] protected Stat armorPotency;// how much armor to 50% damage redu
     [SerializeField] protected Stat strengthPotency; //  how much to double damage
@@ -18,19 +20,69 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] protected Stat dexterity;
     [SerializeField] protected Stat armor;
     [SerializeField] protected Stat damage;
-    [SerializeField] protected Stat baseDamageIncreasePrecentage;
-    [SerializeField] protected Stat damageReduPercentage;
+    [SerializeField] protected Stat damageReductionPercentage;
     [SerializeField] protected Stat critChance;
     [SerializeField] protected Stat critDamage;
-
+    [SerializeField] protected Stat spellDamagePercentage;
     protected bool died = false;
-    protected float currentHealt { get; private set; }
+    protected bool spellCrit = false;
+    public float currentHealt { get; protected set; }
 
     #region getters/setters
+
+    public Stat GetIntPot()
+    {
+        return inteligencePotency;
+    }
+
+    public Stat GetDexPot()
+    {
+        return dexterityPotency;
+    }
+
+    public Stat GetSpellDamagePercentage()
+    {
+        return spellDamagePercentage;
+    }
+
+    public Stat GetIntelligence()
+    {
+        return intelligence;
+    }
+
+    public Stat GetDexterity()
+    {
+        return dexterity;
+    }
+
+    public Stat GetArmorPot()
+    {
+        return armorPotency;
+    }
+
+    public Stat GetVitPot()
+    {
+        return vitalityPotency;
+    }
 
     public Stat GetStrPot()
     {
         return strengthPotency;
+    }
+
+    public Stat GetVitality()
+    {
+        return vitality;
+    }
+
+    public Stat GetArmor()
+    {
+        return armor;
+    }
+
+    public Stat GetMaxHealth()
+    {
+        return maxHealth;
     }
 
     public Stat GetStrength()
@@ -43,9 +95,9 @@ public class CharacterStats : MonoBehaviour
         return moveSpeed;
     }
 
-    public Stat GetDamageIncreasePercentage()
+    public Stat GetDamage()
     {
-        return baseDamageIncreasePrecentage;
+        return damage;
     }
 
     public Stat GetCritChance()
@@ -58,6 +110,21 @@ public class CharacterStats : MonoBehaviour
         return critDamage;
     }
 
+    public bool GetDied()
+    {
+        return died;
+    }
+
+    public void SetDied(bool value)
+    {
+        died = value;
+    }
+
+    public void SetSpellCrit(bool value)
+    {
+        spellCrit = value;
+    }
+
     #endregion
 
     private void Awake()
@@ -65,21 +132,19 @@ public class CharacterStats : MonoBehaviour
         currentHealt = maxHealth.GetValue();
     }
 
-    public void TakeDamage(float incDmg)
+    public virtual void TakeDamage(float incDmg)
     {
         if (!died)
         {
-
-            print(incDmg);
-            float reducedIncDmg = incDmg * (1 + (damageReduPercentage.GetValue() / 100));
+            float reducedIncDmg = incDmg * (1 + (damageReductionPercentage.GetValue() / 100));
             reducedIncDmg /= (1 + (armor.GetValue() / armorPotency.GetValue()));
-            print(reducedIncDmg); //0?
+
             currentHealt -= reducedIncDmg;
-            print(currentHealt);
+            currentHealt = Mathf.Clamp(currentHealt, 0, maxHealth.GetValue());
 
-            onDamageTakenCallback?.Invoke(this.gameObject, currentHealt, maxHealth.GetValue());
+            onHelathChangedCallback?.Invoke(this.gameObject, currentHealt, maxHealth.GetValue());
 
-            if (currentHealt <= 0)
+            if (currentHealt == 0)
             {
                 Die();
             }
@@ -88,8 +153,8 @@ public class CharacterStats : MonoBehaviour
 
     public float CalcWeaponDmg(float baseWeaponDamage)
     {
-        float dmg = (damage.GetValue() + baseWeaponDamage) * (1 + (baseDamageIncreasePrecentage.GetValue() / 100));
-        dmg *= 1 + (strength.GetValue() / strengthPotency.GetValue());
+        float dmg = (damage.GetValue() + baseWeaponDamage);
+        dmg *= (1 + (strength.GetValue() / strengthPotency.GetValue()));
         dmg = CalcCrit(dmg);
         return dmg;
     }
@@ -99,7 +164,7 @@ public class CharacterStats : MonoBehaviour
         float rnd = Random.Range(0f, 100f);
         if (rnd <= critChance.GetValue())
         {
-            damage *= (1 + (critDamage.GetValue() / 100));
+            damage *= (critDamage.GetValue() / 100f);
         }
         return damage;
     }
@@ -107,7 +172,12 @@ public class CharacterStats : MonoBehaviour
     public float CalcSkillDmg(float baseSpellDamage)
     {
         float dmg = damage.GetValue() + baseSpellDamage;
-        dmg *= 1 + (intelligence.GetValue() / inteligencePotency.GetValue());
+        dmg *= (1 + spellDamagePercentage.GetValue());
+        dmg *= (1 + (intelligence.GetValue() / inteligencePotency.GetValue()));
+        if (spellCrit)
+        {
+            dmg = CalcCrit(dmg);
+        }
         return dmg;
     }
 
@@ -115,10 +185,7 @@ public class CharacterStats : MonoBehaviour
     {
         currentHealt += ammount;
         Mathf.Clamp(currentHealt, 0f, maxHealth.GetValue());
-    }
-    public virtual void Die()
-    {
-        died = true;
+        onHelathChangedCallback?.Invoke(this.gameObject, currentHealt, maxHealth.GetValue());
     }
 
     public void Execute()
@@ -127,5 +194,11 @@ public class CharacterStats : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public virtual void Die()
+    {
+        died = true;
+        onDiedCallback?.Invoke(gameObject);
     }
 }

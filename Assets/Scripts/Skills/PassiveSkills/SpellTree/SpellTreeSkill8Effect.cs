@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellTreeSkill8Effect : MonoBehaviour
+public class SpellTreeSkill8Effect : PassiveSkillEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    //spells can crit
+    PlayerStats playerStats;
+
+    public override void Effect(PassiveSkill skill)
     {
-        
+        if (!playerStats)
+        {
+            playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+        }
+        EnableSpellCrit();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void EnableSpellCrit()
     {
-        
+        playerStats.SetSpellCrit(true);
     }
 }

@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellTreeSkill2Effect : MonoBehaviour
+public class SpellTreeSkill2Effect : PassiveSkillEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerStats playerStats;
+    float perPoint = 1;
+    public override void Effect(PassiveSkill skill)
     {
-        
+        if (playerStats)
+        {
+            IncreaseDexterity(skill);
+        }
+        else
+        {
+            playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+            IncreaseDexterity(skill);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void IncreaseDexterity(PassiveSkill skill)
     {
-        
+        Stat stat = playerStats.GetDexterity();
+        stat.RemoveModifier((skill.points - 1) * perPoint);
+        stat.AddModifier(skill.points * perPoint);
     }
 }

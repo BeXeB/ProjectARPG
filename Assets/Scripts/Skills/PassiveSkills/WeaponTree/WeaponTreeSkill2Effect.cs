@@ -1,7 +1,7 @@
 public class WeaponTreeSkill2Effect : PassiveSkillEffect
 {
     //bonus base damage
-    float percentagePerPoint = 10;
+    float percentagePerPoint = 1;
     private PlayerStats playerStats;
     public override void Effect(PassiveSkill skill)
     {
@@ -18,8 +18,7 @@ public class WeaponTreeSkill2Effect : PassiveSkillEffect
 
     private void IncreaseBaseDamage(PassiveSkill skill)
     {
-        Stat damageIncrease = playerStats.GetDamageIncreasePercentage();
-        damageIncrease.RemoveModifier(percentagePerPoint * (skill.points - 1));
-        damageIncrease.AddModifier(percentagePerPoint * skill.points);
+        Stat damageIncrease = playerStats.GetDamage();
+        damageIncrease.AddPercentageModifier(percentagePerPoint);
     }
 }

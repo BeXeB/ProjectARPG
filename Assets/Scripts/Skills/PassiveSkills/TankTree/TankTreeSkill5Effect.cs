@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class TankTreeSkill5Effect : MonoBehaviour
+public class TankTreeSkill5Effect : PassiveSkillEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    //better vitality
+    float perPoint = 2;
+
+    private PlayerStats playerStats;
+    public override void Effect(PassiveSkill skill)
     {
-        
+        if (playerStats)
+        {
+            IncreaseVitalityPotency(skill);
+        }
+        else
+        {
+            playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+            IncreaseVitalityPotency(skill);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void IncreaseVitalityPotency(PassiveSkill skill)
     {
-        
+        Stat strPot = playerStats.GetVitPot();
+        strPot.RemoveModifier(perPoint * (skill.points - 1));
+        strPot.AddModifier(perPoint * skill.points);
     }
 }

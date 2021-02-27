@@ -35,6 +35,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 dir = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dir.x, 0f, dir.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.fixedDeltaTime * 10f);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.fixedDeltaTime * 10f);
+        transform.rotation = lookRotation;
     }
 }

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PassiveSkillTreeController : MonoBehaviour
 {
+    public delegate void OnSkillPointsChanged(int availableSkillPoints);
+    public OnSkillPointsChanged onSkillPointsChangedCallback;
     public delegate void OnPassiveSkillsChanged(PassiveSkillTree passiveSkillTree);
     public OnPassiveSkillsChanged onPassiveSkillsChagedCallback;
     public int availableSkillPoints = 0;
@@ -32,6 +34,7 @@ public class PassiveSkillTreeController : MonoBehaviour
     void OnlevelChanged()
     {
         availableSkillPoints++;
+        onSkillPointsChangedCallback?.Invoke(availableSkillPoints);
     }
 
     public void TryAddSkillPoint(PassiveSkill skill)
@@ -48,6 +51,7 @@ public class PassiveSkillTreeController : MonoBehaviour
                         pskill.skillEffect.GetComponent<PassiveSkillEffect>()?.Effect(pskill);
                         tree.pointsSpent++;
                         availableSkillPoints--;
+                        onSkillPointsChangedCallback?.Invoke(availableSkillPoints);
                         if (tree.pointsSpent == tree.tier * tree.pointsPerTier)
                         {
                             tree.tier++;

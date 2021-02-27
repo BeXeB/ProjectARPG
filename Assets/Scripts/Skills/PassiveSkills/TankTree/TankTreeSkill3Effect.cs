@@ -1,18 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TankTreeSkill3Effect : MonoBehaviour
+public class TankTreeSkill3Effect : PassiveSkillEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    private float percentPerPoint = 10;
+    private float percentPerSec = 0;
+    private Stat health;
+    private PlayerStats playerStats;
+
+    public override void Effect(PassiveSkill skill)
     {
-        
+        if (playerStats)
+        {
+            IncreaseHealthPerSec(skill);
+        }
+        else
+        {
+            playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+            IncreaseHealthPerSec(skill);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void IncreaseHealthPerSec(PassiveSkill skill)
     {
-        
+        if (health == null)
+        {
+            health = playerStats.GetMaxHealth();
+        }
+        percentPerSec = percentPerPoint * skill.points;
+    }
+
+    private void Update()
+    {
+        if (!playerStats.GetDied())
+        {
+            playerStats.Heal((health.GetValue() - playerStats.currentHealt) * percentPerSec * Time.deltaTime);
+        }
+
     }
 }

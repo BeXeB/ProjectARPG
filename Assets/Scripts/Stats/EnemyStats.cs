@@ -9,9 +9,12 @@ public class EnemyStats : CharacterStats
         if (!died)
         {
             base.Die();
-            PlayerManager.instance.player.GetComponent<LevelSystem>().AddExperience(experience);
-            GetComponent<DropTable>().Drop();
-            GameObject.Destroy(gameObject, 1f);
+            if (died)
+            {
+                PlayerManager.instance.player.GetComponent<LevelSystem>().AddExperience(experience);
+                GetComponent<DropTable>().Drop();
+                GameObject.Destroy(gameObject, 1f);
+            }
         }
     }
 }

@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankTreeSkill6Effect : MonoBehaviour
+public class TankTreeSkill6Effect : PassiveSkillEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    //shield capacity
+    float percentPerPoint = 10;
+    private PlayerStats playerStats;
+    public override void Effect(PassiveSkill skill)
     {
-        
+        if (playerStats)
+        {
+            IncreaseShield(skill);
+        }
+        else
+        {
+            playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+            IncreaseShield(skill);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void IncreaseShield(PassiveSkill skill)
     {
-        
+        Stat stat = playerStats.GetShield();
+        stat.RemovePercentageModifier(percentPerPoint * (skill.points - 1));
+        stat.AddPercentageModifier(percentPerPoint * skill.points);
     }
 }
