@@ -45,6 +45,6 @@ public class SpellTreeSkill4Effect : PassiveSkillEffect
             stackController.GetMaxStacks().AddModifier(stackIncrease);
         }
 
-        currentPercentagePerStack = skill.points * percentPerPoint;
+        currentPercentagePerStack = skill.GetPoints() * percentPerPoint;
     }
 }

@@ -44,6 +44,6 @@ public class SpellTreeSkill7Effect : PassiveSkillEffect
             stackController.GetMaxStacks().AddModifier(stackIncrease);
         }
 
-        currentBonusPerStack = skill.points * bonusPerpoint;
+        currentBonusPerStack = skill.GetPoints() * bonusPerpoint;
     }
 }

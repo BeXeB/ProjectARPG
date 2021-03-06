@@ -19,7 +19,7 @@ public class TankTreeSkill2Effect : PassiveSkillEffect
     private void IncreaseArmor(PassiveSkill skill)
     {
         Stat stat = playerStats.GetArmor();
-        stat.RemoveModifier(perPoint * (skill.points - 1));
-        stat.AddModifier(perPoint * skill.points);
+        stat.RemoveModifier(perPoint * (skill.GetPoints() - 1));
+        stat.AddModifier(perPoint * skill.GetPoints());
     }
 }

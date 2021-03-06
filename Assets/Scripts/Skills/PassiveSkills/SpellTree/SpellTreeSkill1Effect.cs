@@ -22,7 +22,7 @@ public class SpellTreeSkill1Effect : PassiveSkillEffect
     private void IncreaseInteligence(PassiveSkill skill)
     {
         Stat stat = playerStats.GetIntelligence();
-        stat.RemoveModifier((skill.points - 1) * perPoint);
-        stat.AddModifier(skill.points * perPoint);
+        stat.RemoveModifier((skill.GetPoints() - 1) * perPoint);
+        stat.AddModifier(skill.GetPoints() * perPoint);
     }
 }

@@ -19,7 +19,7 @@ public class WeaponTreeSkill8Effect : PassiveSkillEffect
     private void IncreaseAttackSpeed(PassiveSkill skill)
     {
         Stat attackSpeed = playerAttack.GetAttackSpeed();
-        attackSpeed.RemoveModifier(percentagePerPoint * (skill.points - 1));
-        attackSpeed.AddModifier(percentagePerPoint * skill.points);
+        attackSpeed.RemoveModifier(percentagePerPoint * (skill.GetPoints() - 1));
+        attackSpeed.AddModifier(percentagePerPoint * skill.GetPoints());
     }
 }

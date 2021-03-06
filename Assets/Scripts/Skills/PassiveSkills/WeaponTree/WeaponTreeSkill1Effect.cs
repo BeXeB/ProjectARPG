@@ -19,7 +19,7 @@ public class WeaponTreeSkill1Effect : PassiveSkillEffect
     private void IncreaseStrength(PassiveSkill skill)
     {
         Stat stat = playerStats.GetStrength();
-        stat.RemoveModifier((skill.points - 1) * perPoint);
-        stat.AddModifier(skill.points * perPoint);
+        stat.RemoveModifier((skill.GetPoints() - 1) * perPoint);
+        stat.AddModifier(skill.GetPoints() * perPoint);
     }
 }

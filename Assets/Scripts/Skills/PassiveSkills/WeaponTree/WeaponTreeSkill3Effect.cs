@@ -19,7 +19,7 @@ public class WeaponTreeSkill3Effect : PassiveSkillEffect
     private void IncreaseCritChance(PassiveSkill skill)
     {
         Stat damageIncrease = playerStats.GetCritChance();
-        damageIncrease.RemoveModifier(percentagePerPoint * (skill.points - 1));
-        damageIncrease.AddModifier(percentagePerPoint * skill.points);
+        damageIncrease.RemoveModifier(percentagePerPoint * (skill.GetPoints() - 1));
+        damageIncrease.AddModifier(percentagePerPoint * skill.GetPoints());
     }
 }

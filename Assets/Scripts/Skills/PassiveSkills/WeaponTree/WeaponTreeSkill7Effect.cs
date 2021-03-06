@@ -20,7 +20,7 @@ public class WeaponTreeSkill7Effect : PassiveSkillEffect
     private void IncreaseReloadSpeed(PassiveSkill skill)
     {
         Stat reloadSpeed = playerAttack.GetReloadSpeed();
-        reloadSpeed.RemoveModifier(percentagePerPoint * (skill.points - 1));
-        reloadSpeed.AddModifier(percentagePerPoint * skill.points);
+        reloadSpeed.RemoveModifier(percentagePerPoint * (skill.GetPoints() - 1));
+        reloadSpeed.AddModifier(percentagePerPoint * skill.GetPoints());
     }
 }

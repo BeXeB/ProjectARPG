@@ -23,7 +23,7 @@ public class TankTreeSkill6Effect : PassiveSkillEffect
     private void IncreaseShield(PassiveSkill skill)
     {
         Stat stat = playerStats.GetShield();
-        stat.RemovePercentageModifier(percentPerPoint * (skill.points - 1));
-        stat.AddPercentageModifier(percentPerPoint * skill.points);
+        stat.RemovePercentageModifier(percentPerPoint * (skill.GetPoints() - 1));
+        stat.AddPercentageModifier(percentPerPoint * skill.GetPoints());
     }
 }

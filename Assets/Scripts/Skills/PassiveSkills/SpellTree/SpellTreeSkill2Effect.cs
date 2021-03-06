@@ -22,7 +22,7 @@ public class SpellTreeSkill2Effect : PassiveSkillEffect
     private void IncreaseDexterity(PassiveSkill skill)
     {
         Stat stat = playerStats.GetDexterity();
-        stat.RemoveModifier((skill.points - 1) * perPoint);
-        stat.AddModifier(skill.points * perPoint);
+        stat.RemoveModifier((skill.GetPoints() - 1) * perPoint);
+        stat.AddModifier(skill.GetPoints() * perPoint);
     }
 }

@@ -23,7 +23,7 @@ public class SpellTreeSkill3Effect : PassiveSkillEffect
     private void IncreaseBaseSpellDamage(PassiveSkill skill)
     {
         Stat stat = playerStats.GetSpellDamagePercentage();
-        stat.RemoveModifier((skill.points - 1) * percentagePerPoint);
-        stat.AddModifier(skill.points * percentagePerPoint);
+        stat.RemoveModifier((skill.GetPoints() - 1) * percentagePerPoint);
+        stat.AddModifier(skill.GetPoints() * percentagePerPoint);
     }
 }

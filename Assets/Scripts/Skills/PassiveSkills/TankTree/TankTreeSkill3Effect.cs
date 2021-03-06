@@ -26,7 +26,7 @@ public class TankTreeSkill3Effect : PassiveSkillEffect
         {
             health = playerStats.GetMaxHealth();
         }
-        percentPerSec = percentPerPoint * skill.points;
+        percentPerSec = percentPerPoint * skill.GetPoints();
     }
 
     private void Update()

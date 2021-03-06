@@ -19,10 +19,9 @@ public class PassiveSkillTreeController : MonoBehaviour
         StartCoroutine(LoadPassivesTest());
     }
 
-    //dont forget to get rid of this
     IEnumerator LoadPassivesTest()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return null;
         foreach (PassiveSkillTree tree in skillTrees)
         {
             UnlockSkillsInNextTier(tree);

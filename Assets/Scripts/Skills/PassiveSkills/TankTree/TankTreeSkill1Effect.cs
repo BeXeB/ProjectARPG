@@ -19,7 +19,7 @@ public class TankTreeSkill1Effect : PassiveSkillEffect
     private void IncreaseVitality(PassiveSkill skill)
     {
         Stat stat = playerStats.GetVitality();
-        stat.RemoveModifier((skill.points - 1) * perPoint);
-        stat.AddModifier(skill.points * perPoint);
+        stat.RemoveModifier((skill.GetPoints() - 1) * perPoint);
+        stat.AddModifier(skill.GetPoints() * perPoint);
     }
 }

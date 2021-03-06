@@ -23,7 +23,7 @@ public class SpellTreeSkill6Effect : PassiveSkillEffect
     private void IncreaseSpellDuration(PassiveSkill skill)
     {
         Stat stat = skillBar.GetDurationBonus();
-        stat.RemoveModifier((skill.points - 1) * percentPerPoint);
-        stat.AddModifier(skill.points * percentPerPoint);
+        stat.RemoveModifier((skill.GetPoints() - 1) * percentPerPoint);
+        stat.AddModifier(skill.GetPoints() * percentPerPoint);
     }
 }

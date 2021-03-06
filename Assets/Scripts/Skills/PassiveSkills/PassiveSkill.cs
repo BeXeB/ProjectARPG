@@ -13,4 +13,8 @@ public class PassiveSkill : ScriptableObject
     public Sprite lockedIcon;
     new public string name = "new skill";
     public GameObject skillEffect;
+    public int GetPoints()
+    {
+        return GetPoints() + bonusPoints;
+    }
 }
